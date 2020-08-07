@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ui_AnimDialogIOS">
+        <item name="android:windowEnterAnimation">@anim/ui_dialog_ios_enter</item>
+        <item name="android:windowExitAnimation">@anim/ui_dialog_ios_exit</item>
+    </style>
+
+    <style name="ui_AnimDialogBottom">
+        <item name="android:windowEnterAnimation">@anim/ui_dialog_bottom_enter</item>
+        <item name="android:windowExitAnimation">@anim/ui_dialog_bottom_exit</item>
+    </style>
+
+</resources>

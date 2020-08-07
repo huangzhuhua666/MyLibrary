@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="ResourceName">
+
+    <attr name="radii" format="dimension"/>
+    <attr name="leftTopRadiusX" format="dimension"/>
+    <attr name="leftTopRadiusY" format="dimension"/>
+    <attr name="leftBottomRadiusX" format="dimension"/>
+    <attr name="leftBottomRadiusY" format="dimension"/>
+    <attr name="rightTopRadiusX" format="dimension"/>
+    <attr name="rightTopRadiusY" format="dimension"/>
+    <attr name="rightBottomRadiusX" format="dimension"/>
+    <attr name="rightBottomRadiusY" format="dimension"/>
+    <attr name="lineColor" format="color"/>
+    <attr name="textSize" format="dimension"/>
+    <attr name="normalTextColor" format="color"/>
+    <attr name="pressTextColor" format="color"/>
+    <attr name="borderWidth" format="dimension"/>
+    <attr name="borderColor" format="color"/>
+    <attr name="spanCount" format="integer"/>
+    <attr name="itemHeight" format="dimension"/>
+    <attr name="itemMargin" format="dimension"/>
+    <attr name="itemRadii" format="dimension"/>
+
+    <declare-styleable name="RTextView">
+        <!--圆角-->
+        <attr name="radii"/>
+        <attr name="leftTopRadiusX"/>
+        <attr name="leftTopRadiusY"/>
+        <attr name="leftBottomRadiusX"/>
+        <attr name="leftBottomRadiusY"/>
+        <attr name="rightTopRadiusX"/>
+        <attr name="rightTopRadiusY"/>
+        <attr name="rightBottomRadiusX"/>
+        <attr name="rightBottomRadiusY"/>
+        <!--正常的字体颜色-->
+        <attr name="normalTextColor"/>
+        <!--按下的字体颜色-->
+        <attr name="pressTextColor"/>
+        <!--正常的边框-->
+        <attr name="normalStrokeColor" format="color"/>
+        <attr name="normalStrokeWidth" format="dimension"/>
+        <!--按下的边框-->
+        <attr name="pressStrokeColor" format="color"/>
+        <attr name="pressStrokeWidth" format="dimension"/>
+        <!--是否使用渐变色填充-->
+        <attr name="isGradientSolid" format="boolean"/>
+        <!--正常的渐变开始色-->
+        <attr name="normalGradientStart" format="color"/>
+        <!--正常的渐变结束色-->
+        <attr name="normalGradientEnd" format="color"/>
+        <!--按下的渐变开始色-->
+        <attr name="pressGradientStart" format="color"/>
+        <!--按下的渐变结束色-->
+        <attr name="pressGradientEnd" format="color"/>
+        <!--渐变色的类型-->
+        <attr name="gradientType" format="enum">
+            <enum name="line" value="0"/>
+            <enum name="radial" value="1"/>
+            <enum name="sweep" value="2"/>
+        </attr>
+        <attr name="gradientOrientation" format="enum">
+            <enum name="top_bottom" value="0"/>
+            <enum name="rt_lb" value="1"/>
+            <enum name="right_left" value="2"/>
+            <enum name="rb_lt" value="3"/>
+            <enum name="bottom_top" value="4"/>
+            <enum name="lb_rt" value="5"/>
+            <enum name="left_right" value="6"/>
+            <enum name="lt_rb" value="7"/>
+        </attr>
+        <attr name="useLevel" format="boolean"/>
+        <!--正常的填充色-->
+        <attr name="normalSolid" format="color"/>
+        <!--按下的填充色-->
+        <attr name="pressSolid" format="color"/>
+    </declare-styleable>
+
+    <declare-styleable name="RImageView">
+        <attr name="shape" format="enum">
+            <!--圆角-->
+            <enum name="round_corner" value="0"/>
+            <!--圆形-->
+            <enum name="circle" value="1"/>
+        </attr>
+        <attr name="radii"/>
+        <attr name="leftTopRadiusX"/>
+        <attr name="leftTopRadiusY"/>
+        <attr name="leftBottomRadiusX"/>
+        <attr name="leftBottomRadiusY"/>
+        <attr name="rightTopRadiusX"/>
+        <attr name="rightTopRadiusY"/>
+        <attr name="rightBottomRadiusX"/>
+        <attr name="rightBottomRadiusY"/>
+        <attr name="borderWidth"/>
+        <attr name="borderColor"/>
+    </declare-styleable>
+
+    <declare-styleable name="TabView">
+        <attr name="tabText" format="string"/>
+        <attr name="tabTextSize" format="dimension"/>
+        <attr name="tabTextColorNormal" format="color"/>
+        <attr name="tabTextColorSelect" format="color"/>
+        <attr name="tabIconNormal" format="reference"/>
+        <attr name="tabIconSelect" format="reference"/>
+        <attr name="badgeBackgroundColor" format="color"/>
+        <attr name="paddingTextWithIcon" format="dimension"/>
+    </declare-styleable>
+
+    <declare-styleable name="BarLoadingView">
+        <attr name="lineColor"/>
+    </declare-styleable>
+
+    <declare-styleable name="RotateLoadingView">
+        <attr name="lineWidth" format="dimension"/>
+        <attr name="lineColor"/>
+        <attr name="shadowOffset" format="dimension"/>
+        <attr name="shadowColor" format="color"/>
+    </declare-styleable>
+
+    <declare-styleable name="DeleteEditText">
+        <attr name="iconStart" format="reference"/>
+        <attr name="iconEnd" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="PSFixTextView">
+        <!--内容-->
+        <attr name="midContent" format="string"/>
+        <!--内容字体大小-->
+        <attr name="contentSize" format="dimension"/>
+        <!--内容字体颜色-->
+        <attr name="contentColor" format="color"/>
+        <!--内容字体style-->
+        <attr name="contentStyle" format="enum">
+            <enum name="normal" value="0"/>
+            <enum name="bold" value="1"/>
+            <enum name="italic" value="2"/>
+            <enum name="bold_italic" value="3"/>
+        </attr>
+        <!--前缀-->
+        <attr name="prefixText" format="string"/>
+        <!--前缀字体大小-->
+        <attr name="prefixSize" format="dimension"/>
+        <!--前缀字体颜色-->
+        <attr name="prefixColor" format="color"/>
+        <!--前缀字体style-->
+        <attr name="prefixStyle" format="enum">
+            <enum name="normal" value="0"/>
+            <enum name="bold" value="1"/>
+            <enum name="italic" value="2"/>
+            <enum name="bold_italic" value="3"/>
+        </attr>
+        <!--前缀后是否追加一个空格-->
+        <attr name="addSpaceAfterPrefix" format="boolean"/>
+        <!--后缀-->
+        <attr name="suffixText" format="string"/>
+        <!--后缀开始的字符-->
+        <attr name="suffixStartStr" format="string"/>
+        <!--后缀字体大小-->
+        <attr name="suffixSize" format="dimension"/>
+        <!--后缀字体颜色-->
+        <attr name="suffixColor" format="color"/>
+        <!--后缀字体style-->
+        <attr name="suffixStyle" format="enum">
+            <enum name="normal" value="0"/>
+            <enum name="bold" value="1"/>
+            <enum name="italic" value="2"/>
+            <enum name="bold_italic" value="3"/>
+        </attr>
+        <!--后缀前是否追加一个空格-->
+        <attr name="addSpaceBeforeSuffix" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="RunTextViewVertical">
+        <!--字体大小-->
+        <attr name="textSize"/>
+        <!--字体颜色-->
+        <attr name="textColor" format="color"/>
+        <!--内间距-->
+        <attr name="padding" format="dimension"/>
+        <!--文字进入和退出的时间间隔-->
+        <attr name="animDuration" format="integer"/>
+        <!--文字停留时长-->
+        <attr name="keepTime" format="integer"/>
+    </declare-styleable>
+
+    <declare-styleable name="SideBar">
+        <!--字体大小-->
+        <attr name="textSize"/>
+        <!--字体颜色-->
+        <attr name="normalTextColor"/>
+        <!--选中字体颜色-->
+        <attr name="pressTextColor"/>
+    </declare-styleable>
+
+    <declare-styleable name="RWaveView">
+        <attr name="textColorAbove" format="color"/>
+        <attr name="textColorBelow" format="color"/>
+        <attr name="waveColor" format="color"/>
+        <attr name="borderWidth"/>
+        <attr name="borderColor"/>
+    </declare-styleable>
+
+    <declare-styleable name="GridImageShowView">
+        <attr name="spanCount"/>
+        <attr name="itemHeight"/>
+        <attr name="itemMargin"/>
+        <attr name="itemRadii"/>
+    </declare-styleable>
+
+    <declare-styleable name="GridImageAddView">
+        <attr name="spanCount"/>
+        <attr name="maxCount" format="integer"/>
+        <attr name="itemHeight"/>
+        <attr name="itemMargin"/>
+        <attr name="itemRadii"/>
+        <attr name="defaultAddImage" format="reference"/>
+        <attr name="defaultDeleteIcon" format="reference"/>
+    </declare-styleable>
+
+</resources>
