@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="common_colorPrimary">#fffdc100</color>
+    <color name="common_bg_white">#ffffffff</color>
+    <color name="common_bg_dialog_loading">#dc000000</color>
+
+    <color name="common_text_black">#ff333333</color>
+    <color name="common_text_white">#ffffffff</color>
+    <color name="common_text_tint_gray">#ff999999</color>
+
+    <color name="common_stroke_white">#ffffffff</color>
+</resources>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="common_loading">努力加载中&#8230;</string>
+    <string name="common_no_data">暂无数据</string>
+    <string name="common_require_network_retry">请连接网络后点击屏幕重试</string>
+    <string name="common_unknown_error_retry">发生未知错误，请点击屏幕重试</string>
+    <string name="common_please_wait">请等待&#8230;</string>
+    <string name="common_cancel">取消</string>
+    <string name="common_confirm">确定</string>
+    <string name="common_uploading">上传中&#8230;</string>
+</resources>
