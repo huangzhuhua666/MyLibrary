@@ -1,13 +1,19 @@
 package com.example.mylibrary.ui.activity
 
+import com.chad.library.adapter.base.BaseBinderAdapter
 import com.example.common.activity.UIActivity
+import com.example.mylibrary.adapter.MenuBean
+import com.example.mylibrary.adapter.MenuBinder
 import com.example.mylibrary.databinding.ActivityMainBinding
+import com.google.android.flexbox.FlexboxLayoutManager
 import com.gyf.immersionbar.ktx.immersionBar
 
 class MainActivity : UIActivity<ActivityMainBinding>() {
 
     override val isStatusBarDarkFont: Boolean
         get() = true
+
+    private val mAdapter by lazy { BaseBinderAdapter().addItemBinder(MenuBinder()) }
 
     override fun createViewBinding(): ActivityMainBinding {
         return ActivityMainBinding.inflate(layoutInflater)
@@ -19,11 +25,18 @@ class MainActivity : UIActivity<ActivityMainBinding>() {
     }
 
     override fun initView() {
-
+        mBinding.rvMenu.run {
+            layoutManager = FlexboxLayoutManager(mContext)
+            adapter = mAdapter
+        }
     }
 
     override fun initData() {
-
+        mAdapter.setNewInstance(
+            mutableListOf(
+                MenuBean("ObjectBox", ObjectBoxActivity::class.java)
+            )
+        )
     }
 
     override fun initListener() {

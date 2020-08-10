@@ -100,4 +100,7 @@ dependencies {
 
     // PictureSelector
     api rootProject.ext.dependencies["PictureSelector"]
+
+    // flexbox
+    api rootProject.ext.androidx["flexbox"]
 }
