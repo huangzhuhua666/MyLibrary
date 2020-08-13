@@ -94,7 +94,7 @@ dependencies {
 //    userOrg = 'huangzhuhua666'
 //    groupId = 'com.hzh.network'
 //    artifactId = 'networklib'
-//    publishVersion = '1.0.0'
+//    publishVersion = '1.0.1'
 //    desc = ''
 //    website = 'https://github.com/huangzhuhua666/MyLibrary'
 //}

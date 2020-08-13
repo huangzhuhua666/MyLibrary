@@ -23,8 +23,6 @@ open class JsonMapParser : AbstractParser<JsonMap> {
     override fun onParse(response: Response): JsonMap {
         val map = convert<JsonMap>(response, mType)
 
-        if (map.getBool("success")) map["code"] = 200
-
         val code = try {
             map.getInt("success")
         } catch (e: Exception) {
@@ -32,7 +30,7 @@ open class JsonMapParser : AbstractParser<JsonMap> {
         }
 
         if (code != NetConfig.CODE_SUCCESS && code != NetConfig.CODE_LOGIN_EXPIRED) {
-            throw ParseException(code.toString(), map.getString("message"), response)
+            throw ParseException(code.toString(), map.getString(NetConfig.ERROR_MSG_KEY), response)
         }
 
         return map

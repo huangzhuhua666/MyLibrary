@@ -12,6 +12,8 @@ object NetConfig {
 
     var CODE_LOGIN_EXPIRED by Delegates.notNull<Int>()
 
+    var ERROR_MSG_KEY by Delegates.notNull<String>()
+
     var CONNECT_TIMEOUT = 10L
 
     var READ_TIMEOUT = 10L
