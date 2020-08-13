@@ -71,4 +71,9 @@ dependencies {
     testImplementation rootProject.ext.androidx["junit"]
     androidTestImplementation rootProject.ext.androidx["ext-junit"]
     androidTestImplementation rootProject.ext.androidx["espresso-core"]
+
+    debugImplementation "io.objectbox:objectbox-android-objectbrowser:$objectbox_version"
+    releaseImplementation "io.objectbox:objectbox-android:$objectbox_version"
 }
+
+apply plugin: 'io.objectbox'
