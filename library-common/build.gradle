@@ -103,4 +103,8 @@ dependencies {
 
     // flexbox
     api rootProject.ext.androidx["flexbox"]
+
+    testImplementation rootProject.ext.androidx["junit"]
+    androidTestImplementation rootProject.ext.androidx["ext-junit"]
+    androidTestImplementation rootProject.ext.androidx["espresso-core"]
 }
