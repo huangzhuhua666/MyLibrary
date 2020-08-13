@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 import com.example.hzh.base.BuildConfig
 import com.example.hzh.base.activity.BaseActivity
-import kotlin.properties.Delegates
 
 /**
  * Create by hzh on 2020/5/13.
@@ -20,8 +19,8 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
 
     protected val mContext by lazy { requireActivity() as BaseActivity<*> }
 
-    protected var mBinding by Delegates.notNull<VB>()
-        private set
+    private var _binding: VB? = null
+    protected val mBinding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,7 +29,7 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
     ): View? {
         isFirstIn = true
 
-        mBinding = createViewBinding(inflater, container).also {
+        _binding = createViewBinding(inflater, container).also {
             it.root.parent?.let { p -> (p as ViewGroup).removeView(it.root) }
         }
 
@@ -55,6 +54,11 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
             initData()
             isFirstIn = false
         }
+    }
+
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
     }
 
     /**

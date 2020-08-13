@@ -7,15 +7,14 @@ import android.view.*
 import androidx.fragment.app.*
 import androidx.viewbinding.ViewBinding
 import com.example.hzh.ui.R
-import kotlin.properties.Delegates
 
 /**
  * Create by hzh on 2019/11/4.
  */
 abstract class BaseDialog<VB : ViewBinding> : DialogFragment() {
 
-    protected var mBinding by Delegates.notNull<VB>()
-        private set
+    private var _binding: VB? = null
+    protected val mBinding get() = _binding!!
 
     protected open val cancelable: Boolean
         get() = true
@@ -40,7 +39,7 @@ abstract class BaseDialog<VB : ViewBinding> : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        mBinding = createViewBinding(inflater)
+        _binding = createViewBinding(inflater)
         return mBinding.root
     }
 
@@ -71,6 +70,11 @@ abstract class BaseDialog<VB : ViewBinding> : DialogFragment() {
     override fun onResume() {
         super.onResume()
         initData()
+    }
+
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
     }
 
     fun show(fragment: Fragment) {
