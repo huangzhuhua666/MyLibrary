@@ -7,8 +7,8 @@ import androidx.lifecycle.observe
 import com.chad.library.adapter.base.BaseBinderAdapter
 import com.example.common.activity.YyActivity
 import com.example.hzh.ui.utils.filterFastClickListener
-import com.example.mylibrary.adapter.StudentBinder
-import com.example.mylibrary.adapter.TeacherBinder
+import com.example.mylibrary.adapter.binder.StudentBinder
+import com.example.mylibrary.adapter.binder.TeacherBinder
 import com.example.mylibrary.databinding.ActivityObjectBoxBinding
 import com.example.mylibrary.model.ObjectBoxModel
 import com.example.mylibrary.viewmodel.ObjectBoxVM

@@ -2,8 +2,8 @@ package com.example.mylibrary.ui.activity
 
 import com.chad.library.adapter.base.BaseBinderAdapter
 import com.example.common.activity.UIActivity
-import com.example.mylibrary.adapter.MenuBean
-import com.example.mylibrary.adapter.MenuBinder
+import com.example.mylibrary.adapter.binder.MenuBean
+import com.example.mylibrary.adapter.binder.MenuBinder
 import com.example.mylibrary.databinding.ActivityMainBinding
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.gyf.immersionbar.ktx.immersionBar
@@ -34,7 +34,8 @@ class MainActivity : UIActivity<ActivityMainBinding>() {
     override fun initData() {
         mAdapter.setNewInstance(
             mutableListOf(
-                MenuBean("ObjectBox", ObjectBoxActivity::class.java)
+                MenuBean("ObjectBox", ObjectBoxActivity::class.java),
+                MenuBean("ExpandList", ExpandListActivity::class.java)
             )
         )
     }

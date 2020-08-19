@@ -1,4 +1,4 @@
-package com.example.mylibrary.adapter
+package com.example.mylibrary.adapter.binder
 
 import android.view.LayoutInflater
 import android.view.View

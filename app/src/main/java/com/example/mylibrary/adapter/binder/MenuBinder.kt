@@ -1,14 +1,11 @@
-package com.example.mylibrary.adapter
+package com.example.mylibrary.adapter.binder
 
 import android.content.Intent
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.viewbinding.ViewBinding
 import com.chad.library.adapter.base.binder.QuickViewBindingItemBinder
-import com.example.hzh.base.activity.BaseActivity
-import com.example.hzh.base.util.yes
 import com.example.mylibrary.databinding.ItemMenuBinding
 import java.util.*
 
