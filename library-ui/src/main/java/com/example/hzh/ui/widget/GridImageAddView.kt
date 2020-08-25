@@ -2,7 +2,6 @@ package com.example.hzh.ui.widget
 
 import android.content.Context
 import android.util.AttributeSet
-import android.view.ViewGroup
 import androidx.annotation.DrawableRes
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -10,7 +9,6 @@ import com.example.hzh.ui.R
 import com.example.hzh.ui.adapter.GridImageAddAdapter
 import com.example.hzh.ui.utils.ImageLoadEngine
 import com.example.hzh.ui.utils.dp2px
-import kotlin.math.min
 
 /**
  * Create by hzh on 2020/07/30.
@@ -19,16 +17,7 @@ class GridImageAddView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : ViewGroup(context, attrs, defStyleAttr) {
-
-    private val mRecyclerView by lazy {
-        RecyclerView(context).apply {
-            overScrollMode = RecyclerView.OVER_SCROLL_NEVER
-            isVerticalScrollBarEnabled = false
-            isHorizontalScrollBarEnabled = false
-            layoutManager = GridLayoutManager(context, spanCount)
-        }
-    }
+) : RecyclerView(context, attrs, defStyleAttr) {
 
     private val mAdapter by lazy {
         GridImageAddAdapter(
@@ -100,29 +89,15 @@ class GridImageAddView @JvmOverloads constructor(
             recycle()
         }
 
-        addView(mRecyclerView, LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT))
+        overScrollMode = OVER_SCROLL_NEVER
+        isVerticalScrollBarEnabled = false
+        isHorizontalScrollBarEnabled = false
+        layoutManager = GridLayoutManager(context, spanCount)
     }
 
     override fun onFinishInflate() {
         super.onFinishInflate()
-        mRecyclerView.adapter = mAdapter
-    }
-
-    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-        val widthSize = MeasureSpec.getSize(widthMeasureSpec)
-        val heightSize = MeasureSpec.getSize(heightMeasureSpec)
-
-        measureChildren(widthMeasureSpec, heightMeasureSpec)
-
-        val layoutHeight = getChildAt(0).measuredHeight + paddingTop + paddingBottom
-        setMeasuredDimension(widthSize, min(heightSize, layoutHeight))
-    }
-
-    override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
-        getChildAt(0).let {
-            it.layout(paddingLeft, paddingTop, paddingLeft + it.measuredWidth, paddingTop + it.measuredHeight)
-        }
+        adapter = mAdapter
     }
 
     /**

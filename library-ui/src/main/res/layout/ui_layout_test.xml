@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.example.hzh.ui.widget.GridImageAddView
+        android:id="@+id/vouchers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        app:defaultAddImage="@drawable/ui_ic_add_image"
+        app:defaultDeleteIcon="@drawable/ui_ic_close_round_gray"
+        app:itemHeight="80dp"
+        app:itemMargin="5dp"
+        app:itemRadii="5dp"
+        app:maxCount="1"
+        app:spanCount="3"/>
+
+</androidx.core.widget.NestedScrollView>
