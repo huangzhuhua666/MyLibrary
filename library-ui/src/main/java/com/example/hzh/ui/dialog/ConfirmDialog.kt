@@ -13,10 +13,11 @@ import com.example.hzh.ui.utils.filterFastClickListener
  *
  * 提示、确认对话框
  */
-class ConfirmDialog private constructor(private val builder: Builder) :
-    BaseDialog<UiDialogConfirmBinding>() {
+class ConfirmDialog private constructor(private val builder: Builder) : BaseDialog<UiDialogConfirmBinding>() {
 
     override val backgroundDrawableResource: Int = R.drawable.ui_bg_dialog_white_radius_10
+
+    override val windowAnimations: Int = builder.windowAnimations
 
     override fun createViewBinding(inflater: LayoutInflater): UiDialogConfirmBinding {
         return UiDialogConfirmBinding.inflate(inflater, null, false)
@@ -65,6 +66,8 @@ class ConfirmDialog private constructor(private val builder: Builder) :
     }
 
     class Builder {
+
+        var windowAnimations = R.style.ui_AnimDialogIOS
 
         var isSingleButton: Boolean = false
 
