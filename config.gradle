@@ -1,5 +1,5 @@
 ext {
-    // android开发版本
+    // region android开发版本
     android = [
             compileSdkVersion: 30,
             buildToolsVersion: "30.0.2",
@@ -9,8 +9,9 @@ ext {
             versionName      : "1.0.0",
             applicationId    : "com.example.mylibrary"
     ]
+    // endregion
 
-    // androidx支持库配置
+    // region androidx支持库配置
     androidx = [
             // flexbox
             "flexbox"      : "com.google.android:flexbox:1.1.1",
@@ -24,8 +25,9 @@ ext {
             // espresso-core
             "espresso-core": "androidx.test.espresso:espresso-core:3.2.0"
     ]
+    // endregion
 
-    // 依赖第三方配置
+    // region 依赖第三方配置
     dependencies = [
             // my lib
             "baselib"            : "com.hzh.base:baselib:1.0.1",
@@ -81,4 +83,5 @@ ext {
             // PictureSelector
             "PictureSelector"    : "com.github.LuckSiege.PictureSelector:picture_library:v2.5.8"
     ]
+    // endregion
 }

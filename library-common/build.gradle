@@ -46,65 +46,84 @@ android {
 }
 
 dependencies {
-    // my lib
+    // region my lib
     api project(':library-base')
     api project(':library-network')
     api project(':library-ui')
+    // endregion
 
     api 'androidx.legacy:legacy-support-core-ui:1.0.0'
 
-    // immersionbar
+    // region immersionbar
     api rootProject.ext.dependencies["immersionbar"]
     api rootProject.ext.dependencies["immersionbar-ktx"]
+    // endregion
 
-    // mmkv
+    // region mmkv
     api rootProject.ext.dependencies["mmkv"]
+    // endregion
 
-    // banner
+    // region banner
     api rootProject.ext.dependencies["banner"]
+    // endregion
 
-    // logger
+    // region logger
     api rootProject.ext.dependencies["logger"]
+    // endregion
 
-    // SmartRefresh
+    // region SmartRefresh
     api rootProject.ext.dependencies["smartRefresh"]
     api rootProject.ext.dependencies["smartRefresh-header"]
+    // endregion
 
-    // xpopup
+    // region xpopup
     api rootProject.ext.dependencies["xpopup"]
+    // endregion
 
-    // BRVAH
+    // region BRVAH
     api rootProject.ext.dependencies["BRVAH"]
+    // endregion
 
-    // Glide
+    // region Glide
     api rootProject.ext.dependencies["glide"]
     api rootProject.ext.dependencies["glide-integration"]
+    // endregion
 
-    // LiveDataBus
+    // region LiveDataBus
     api rootProject.ext.dependencies["liveDataBus"]
+    // endregion
 
-    // multidex
+    // region multidex
     api rootProject.ext.dependencies["multidex"]
+    // endregion
 
-    // permissionx
+    // region permissionx
     api rootProject.ext.dependencies["permissionx"]
+    // endregion
 
-    // title
+    // region title
     api rootProject.ext.dependencies["title"]
+    // endregion
 
-    // ConsecutiveScroller
+    // region ConsecutiveScroller
     api rootProject.ext.dependencies["ConsecutiveScroller"]
+    // endregion
 
-    // TabLayout
+    // region TabLayout
     api rootProject.ext.dependencies["TabLayout"]
+    // endregion
 
-    // PictureSelector
+    // region PictureSelector
     api rootProject.ext.dependencies["PictureSelector"]
+    // endregion
 
-    // flexbox
+    // region flexbox
     api rootProject.ext.androidx["flexbox"]
+    // endregion
 
+    // region test
     testImplementation rootProject.ext.androidx["junit"]
     androidTestImplementation rootProject.ext.androidx["ext-junit"]
     androidTestImplementation rootProject.ext.androidx["espresso-core"]
+    // endregion
 }

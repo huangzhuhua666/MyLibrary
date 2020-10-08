@@ -65,12 +65,15 @@ dependencies {
 
     implementation project(':library-common')
 
-    // Glide Compiler
+    // region Glide Compiler
     kapt rootProject.ext.dependencies["glide-compiler"]
+    // endregion
 
+    // region test
     testImplementation rootProject.ext.androidx["junit"]
     androidTestImplementation rootProject.ext.androidx["ext-junit"]
     androidTestImplementation rootProject.ext.androidx["espresso-core"]
+    // endregion
 
 //    debugImplementation "io.objectbox:objectbox-android-objectbrowser:$objectbox_version"
 //    releaseImplementation "io.objectbox:objectbox-android:$objectbox_version"
