@@ -19,13 +19,14 @@ class DrawableCenterButton @JvmOverloads constructor(
             val textWidth = paint.measureText(text.toString())
 
             compoundDrawables[0]?.run { // DrawableStart
-                val contentWidth = textWidth + compoundDrawablePadding + intrinsicWidth
+                val contentWidth =
+                    textWidth + compoundDrawablePadding + intrinsicWidth + paddingStart + paddingEnd
                 it.translate((width - contentWidth) / 2, 0f)
             }
 
             compoundDrawables[2]?.run { // DrawableEnd
                 val contentWidth = textWidth + compoundDrawablePadding + intrinsicWidth
-                setPadding(0, 0, (width - contentWidth).toInt(), 0)
+                setPadding(0, paddingTop, (width - contentWidth).toInt(), paddingBottom)
                 it.translate((width - contentWidth) / 2, 0f)
             }
         }
