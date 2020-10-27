@@ -1,3 +1,4 @@
+include ':library-camera'
 include ':library-common'
 rootProject.name = "MyLibrary"
 include ':app'

@@ -1,5 +1,6 @@
 package com.example.hzh.network.utils
 
+import rxhttp.wrapper.param.RxHttpJsonParam
 import java.util.*
 
 /**
@@ -24,4 +25,9 @@ internal fun ByteArray.byteArrayToHexString(): String {
         sb.append(Integer.toHexString(v))
     }
     return sb.toString().toUpperCase(Locale.US)
+}
+
+fun RxHttpJsonParam.addPairs(vararg pairs: Pair<String, Any>): RxHttpJsonParam {
+    pairs.forEach { add(it.first, it.second) }
+    return this
 }

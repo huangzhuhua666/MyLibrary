@@ -1,6 +1,5 @@
 package com.example.common.activity
 
-import androidx.lifecycle.observe
 import androidx.viewbinding.ViewBinding
 import com.example.common.R
 import com.example.common.viewmodel.BaseVM
@@ -13,7 +12,7 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout
 /**
  * Create by hzh on 2020/5/18.
  */
-abstract class YyActivity<VB : ViewBinding, VM : BaseVM> : UIActivity<VB>() {
+abstract class YYActivity<VB : ViewBinding, VM : BaseVM> : UIActivity<VB>() {
 
     abstract val mViewModel: VM
 

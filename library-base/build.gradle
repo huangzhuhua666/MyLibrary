@@ -1,6 +1,8 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+}
 
 android {
     compileSdkVersion 30
@@ -40,7 +42,7 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = 1.8
+        jvmTarget = '1.8'
     }
 
     lintOptions {
@@ -122,7 +124,7 @@ dependencies {
 //    userOrg = 'huangzhuhua666'
 //    groupId = 'com.hzh.base'
 //    artifactId = 'baselib'
-//    publishVersion = '1.0.3'
+//    publishVersion = '1.0.4'
 //    desc = ''
 //    website = 'https://github.com/huangzhuhua666/MyLibrary'
 //}

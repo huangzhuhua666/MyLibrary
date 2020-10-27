@@ -42,9 +42,7 @@ class NetworkReceiver(
 
             man.registerDefaultNetworkCallback(callback!!)
         } else { // 7.0以下，用动态广播接收消息
-            activity.registerReceiver(
-                this,
-                IntentFilter().apply { addAction(ConnectivityManager.CONNECTIVITY_ACTION) })
+            activity.registerReceiver(this, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
         }
     }
 
@@ -68,7 +66,7 @@ class NetworkReceiver(
     fun unregister(activity: Activity) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             val man = activity.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-            man.unregisterNetworkCallback(callback!!)
+            callback?.let { man.unregisterNetworkCallback(it) }
         } else activity.unregisterReceiver(this)
     }
 

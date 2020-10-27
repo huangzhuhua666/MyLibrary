@@ -1,6 +1,5 @@
 package com.example.common.fragment
 
-import androidx.lifecycle.observe
 import androidx.viewbinding.ViewBinding
 import com.example.common.R
 import com.example.hzh.base.util.toast
@@ -13,7 +12,7 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout
 /**
  * Create by hzh on 2020/5/18.
  */
-abstract class YyFragment<VB : ViewBinding, VM : BaseVM> : UIFragment<VB>() {
+abstract class YYFragment<VB : ViewBinding, VM : BaseVM> : UIFragment<VB>() {
 
     abstract val mViewModel: VM
 

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MyLibrary</string>
+    <string name="require_permission">请允许相关权限</string>
 </resources>

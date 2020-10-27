@@ -3,9 +3,8 @@ package com.example.mylibrary.ui.activity
 import androidx.activity.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.observe
 import com.chad.library.adapter.base.BaseBinderAdapter
-import com.example.common.activity.YyActivity
+import com.example.common.activity.YYActivity
 import com.example.hzh.ui.utils.filterFastClickListener
 import com.example.mylibrary.adapter.binder.StudentBinder
 import com.example.mylibrary.adapter.binder.TeacherBinder
@@ -18,7 +17,7 @@ import com.gyf.immersionbar.ktx.immersionBar
  * Create by hzh on 2020/08/10.
  */
 @Suppress("UNCHECKED_CAST")
-class ObjectBoxActivity : YyActivity<ActivityObjectBoxBinding, ObjectBoxVM>() {
+class ObjectBoxActivity : YYActivity<ActivityObjectBoxBinding, ObjectBoxVM>() {
 
     override val isStatusBarDarkFont: Boolean
         get() = true

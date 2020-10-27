@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.ActivityManager
 import android.content.Context
 import android.content.Intent
+import android.content.res.Resources
 import android.graphics.Point
 import android.net.Uri
 import android.os.Build
@@ -15,9 +16,12 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.annotation.ColorRes
+import androidx.annotation.DrawableRes
 import androidx.annotation.LayoutRes
 import androidx.annotation.StringRes
 import androidx.core.content.FileProvider
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import com.example.hzh.base.R
 import java.io.File
@@ -193,3 +197,13 @@ fun Context.clearCache() {
     cacheDir.deleteFile()
     if (Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) externalCacheDir?.deleteFile()
 }
+
+fun Context.easyGetColor(
+    @ColorRes id: Int,
+    theme: Resources.Theme? = null
+) = ResourcesCompat.getColor(resources, id, theme)
+
+fun Context.easyGetDrawable(
+    @DrawableRes id: Int,
+    theme: Resources.Theme? = null
+) = ResourcesCompat.getDrawable(resources, id, theme)

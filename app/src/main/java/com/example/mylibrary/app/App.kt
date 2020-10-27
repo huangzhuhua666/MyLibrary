@@ -1,6 +1,5 @@
 package com.example.mylibrary.app
 
-import android.util.Log
 import com.example.common.app.BaseApplication
 import com.example.hzh.base.util.yes
 import com.example.mylibrary.BuildConfig
@@ -24,9 +23,6 @@ class App : BaseApplication() {
 
         boxStore = MyObjectBox.builder().androidContext(applicationContext).build()
 
-        BuildConfig.DEBUG.yes {
-            val start = AndroidObjectBrowser(boxStore).start(this)
-            Log.d("Hzh", "onCreate: $start")
-        }
+        BuildConfig.DEBUG.yes { AndroidObjectBrowser(boxStore).start(this) }
     }
 }
