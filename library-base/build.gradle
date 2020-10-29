@@ -72,7 +72,7 @@ dependencies {
     // endregion
 
     // region design
-    api 'com.google.android.material:material:1.2.0'
+    api 'com.google.android.material:material:1.2.1'
     // endregion
 
     // region lifecycle
@@ -88,7 +88,7 @@ dependencies {
     // endregion
 
     // region constraintlayout
-    api 'androidx.constraintlayout:constraintlayout:2.0.1'
+    api 'androidx.constraintlayout:constraintlayout:2.0.2'
     // endregion
 
     // region viewpager2
@@ -96,12 +96,12 @@ dependencies {
     // endregion
 
     // region navigation
-    api 'androidx.navigation:navigation-fragment-ktx:2.3.0'
-    api 'androidx.navigation:navigation-ui-ktx:2.3.0'
+    api 'androidx.navigation:navigation-fragment-ktx:2.3.1'
+    api 'androidx.navigation:navigation-ui-ktx:2.3.1'
     // endregion
 
     // region test
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     // endregion
