@@ -40,5 +40,6 @@ val Throwable.msg: String
             else message ?: "请求失败，请稍后再试" // 请求失败异常
         }
         is ParseException -> message ?: "未知错误，请稍后再试"
+        is ClassCastException -> "数据解析有误"
         else -> "未知错误，请稍后再试"
     }
