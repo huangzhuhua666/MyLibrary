@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_title"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:background="@android:color/transparent"
+        tools:background="#fdc100">
+
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            android:src="@drawable/ic_goods_back_round"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/ic_back_white"/>
+
+        <com.angcyo.tablayout.DslTabLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:visibility="visible"
+            app:tab_default_index="0"
+            app:tab_deselect_color="@color/text_white"
+            app:tab_draw_indicator="true"
+            app:tab_indicator_drawable="@drawable/indicator_goods_detail"
+            app:tab_indicator_enable_flow="true"
+            app:tab_indicator_height="2dp"
+            app:tab_indicator_style="STYLE_BOTTOM"
+            app:tab_indicator_width="28dp"
+            app:tab_indicator_y_offset="6dp"
+            app:tab_item_auto_equ_width="false"
+            app:tab_item_is_equ_width="false"
+            app:tab_select_color="@color/text_white"
+            app:tab_text_max_size="14sp"
+            app:tab_text_min_size="14sp"
+            tools:visibility="visible">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="12dp"
+                android:text="商品"
+                android:textColor="@color/text_white"
+                android:textSize="14sp"
+                tools:ignore="HardcodedText"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="12dp"
+                android:text="评论"
+                android:textColor="@color/text_white"
+                android:textSize="14sp"
+                tools:ignore="HardcodedText"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="12dp"
+                android:text="详情"
+                android:textColor="@color/text_white"
+                android:textSize="14sp"
+                tools:ignore="HardcodedText"/>
+
+        </com.angcyo.tablayout.DslTabLayout>
+
+        <ImageView
+            android:id="@+id/btn_cart"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:padding="8dp"
+            android:src="@drawable/ic_goods_cart_round"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/ic_goods_cart"/>
+
+        <ImageView
+            android:id="@+id/btn_share"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toStartOf="@id/btn_cart"
+            android:padding="8dp"
+            android:src="@drawable/ic_goods_share_round"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/ic_goods_share"/>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="100dp"/>
+
+</LinearLayout>

@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">MyLibrary</string>
     <string name="require_permission">请允许相关权限</string>
+    <string name="start">开始</string>
+    <string name="end">结束</string>
 </resources>

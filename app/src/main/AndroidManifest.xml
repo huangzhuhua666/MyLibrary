@@ -6,6 +6,7 @@
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
 
     <application
         android:name=".app.App"
@@ -43,6 +44,18 @@
 
         <activity
             android:name=".ui.activity.ExpandListActivity"
+            android:screenOrientation="portrait"/>
+
+<!--        <activity-->
+<!--            android:name=".ui.activity.ScrollActivity"-->
+<!--            android:screenOrientation="portrait"/>-->
+
+        <activity
+            android:name=".ui.activity.GoodsDetailActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".ui.activity.VideoActivity"
             android:screenOrientation="portrait"/>
 
     </application>

@@ -70,7 +70,7 @@ dependencies {
     // endregion
 
     // region constraintlayout
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.2'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     // endregion
 
     // region viewpager2
