@@ -46,9 +46,9 @@
             android:name=".ui.activity.ExpandListActivity"
             android:screenOrientation="portrait"/>
 
-<!--        <activity-->
-<!--            android:name=".ui.activity.ScrollActivity"-->
-<!--            android:screenOrientation="portrait"/>-->
+        <!--        <activity-->
+        <!--            android:name=".ui.activity.ScrollActivity"-->
+        <!--            android:screenOrientation="portrait"/>-->
 
         <activity
             android:name=".ui.activity.GoodsDetailActivity"
@@ -56,6 +56,10 @@
 
         <activity
             android:name=".ui.activity.VideoActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".ui.activity.MotionLayoutActivity"
             android:screenOrientation="portrait"/>
 
     </application>
