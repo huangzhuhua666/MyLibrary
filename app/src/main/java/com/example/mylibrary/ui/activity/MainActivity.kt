@@ -40,6 +40,7 @@ class MainActivity : UIActivity<ActivityMainBinding>() {
                 MenuBean("GoodsDetail", GoodsDetailActivity::class.java),
                 MenuBean("Video", VideoActivity::class.java),
                 MenuBean("MotionLayout", MotionLayoutActivity::class.java),
+                MenuBean("农药", WzryActivity::class.java),
             )
         )
     }

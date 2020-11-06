@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/screen1">
+
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutDescription="@xml/wzry_scene01"
+        tools:showPaths="true">
+
+        <ImageView
+            android:id="@+id/houyi"
+            android:layout_width="66dp"
+            android:layout_height="66dp"
+            android:layout_marginStart="180dp"
+            android:src="@drawable/houyi_model"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.8"
+            tools:ignore="ContentDescription"/>
+
+        <ImageView
+            android:id="@+id/houyi_arrow"
+            android:layout_width="66dp"
+            android:layout_height="66dp"
+            android:src="@drawable/arrow"
+            tools:ignore="ContentDescription"/>
+
+        <ImageView
+            android:id="@+id/yase"
+            android:layout_width="66dp"
+            android:layout_height="66dp"
+            android:src="@drawable/yase_model"
+            tools:ignore="ContentDescription"/>
+
+        <ImageView
+            android:id="@+id/luban"
+            android:layout_width="66dp"
+            android:layout_height="66dp"
+            android:src="@drawable/luban_model"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.58"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.26"
+            tools:ignore="ContentDescription"/>
+
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutDescription="@xml/wzry_scene02"
+        tools:showPaths="true">
+
+        <ImageView
+            android:id="@+id/daji"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/daji_model"
+            tools:ignore="ContentDescription"/>
+
+        <ImageView
+            android:id="@+id/zhongwuyan"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:src="@drawable/zhongwuyan_model"
+            tools:ignore="ContentDescription"/>
+
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutDescription="@xml/wzry_scene03"
+        tools:showPaths="true">
+
+        <ImageView
+            android:id="@+id/daji_1"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@drawable/daji_1"
+            tools:ignore="ContentDescription"/>
+
+        <ImageView
+            android:id="@+id/daji_2"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@drawable/daji_2"
+            tools:ignore="ContentDescription"/>
+
+        <ImageView
+            android:id="@+id/zhongwuyan2"
+            android:layout_width="66dp"
+            android:layout_height="66dp"
+            android:src="@drawable/zhongwuyan_model"
+            tools:ignore="ContentDescription"/>
+
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+
+</FrameLayout>
