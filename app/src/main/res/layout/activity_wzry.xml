@@ -10,7 +10,7 @@
     <androidx.constraintlayout.motion.widget.MotionLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layoutDescription="@xml/wzry_scene01"
+        app:layoutDescription="@xml/scene_wzry01"
         tools:showPaths="true">
 
         <ImageView
@@ -57,7 +57,7 @@
     <androidx.constraintlayout.motion.widget.MotionLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layoutDescription="@xml/wzry_scene02"
+        app:layoutDescription="@xml/scene_wzry02"
         tools:showPaths="true">
 
         <ImageView
@@ -79,7 +79,7 @@
     <androidx.constraintlayout.motion.widget.MotionLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layoutDescription="@xml/wzry_scene03"
+        app:layoutDescription="@xml/scene_wzry03"
         tools:showPaths="true">
 
         <ImageView

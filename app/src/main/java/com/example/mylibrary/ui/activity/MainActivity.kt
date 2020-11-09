@@ -39,8 +39,9 @@ class MainActivity : UIActivity<ActivityMainBinding>() {
 //                MenuBean("Scroll", ScrollActivity::class.java),
                 MenuBean("GoodsDetail", GoodsDetailActivity::class.java),
                 MenuBean("Video", VideoActivity::class.java),
-                MenuBean("MotionLayout", MotionLayoutActivity::class.java),
-                MenuBean("农药", WzryActivity::class.java),
+                MenuBean("MotionLayout1", MotionLayoutActivity::class.java),
+                MenuBean("MotionLayout2", WzryActivity::class.java),
+                MenuBean("MotionLayout3", YoutubeActivity::class.java),
             )
         )
     }
