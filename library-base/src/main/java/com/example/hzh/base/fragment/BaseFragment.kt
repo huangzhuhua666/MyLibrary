@@ -33,6 +33,8 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
             it.root.parent?.let { p -> (p as ViewGroup).removeView(it.root) }
         }
 
+        arguments?.let { onGetBundle(it) }
+
         return mBinding.root
     }
 
@@ -47,8 +49,6 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
     override fun onResume() {
         super.onResume()
         if (BuildConfig.DEBUG) Log.d("CurrentFragment", javaClass.simpleName)
-
-        arguments?.let { onGetBundle(it) }
 
         if (isFirstIn) {
             initData()

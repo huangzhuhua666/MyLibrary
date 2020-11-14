@@ -30,7 +30,7 @@ abstract class YYFragment<VB : ViewBinding, VM : BaseVM> : UIFragment<VB>() {
     override fun bindViewModelObserve() {
         mViewModel.let { vm ->
             vm.isShowLoading.observe(this) {
-                if (it) mLoadingDialog.show(mContext)
+                if (it) mLoadingDialog.show(this)
                 else if (!it && mLoadingDialog.isShowing()) mLoadingDialog.dismiss()
             }
 
@@ -43,7 +43,7 @@ abstract class YYFragment<VB : ViewBinding, VM : BaseVM> : UIFragment<VB>() {
 
             vm.isNoMoreData.observe(this) { mRefresh?.setNoMoreData(it) }
 
-            vm.isDataEmpty.observe(mContext) { onDataEmpty(it) }
+            vm.isDataEmpty.observe(this) { onDataEmpty(it) }
 
             vm.toastTip.observe(this) { mContext.toast(it) }
 
