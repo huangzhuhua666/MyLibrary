@@ -36,7 +36,6 @@ class MainActivity : UIActivity<ActivityMainBinding>() {
             mutableListOf(
                 MenuBean("ObjectBox", ObjectBoxActivity::class.java),
                 MenuBean("ExpandList", ExpandListActivity::class.java),
-//                MenuBean("Scroll", ScrollActivity::class.java),
                 MenuBean("GoodsDetail", GoodsDetailActivity::class.java),
                 MenuBean("Video", VideoActivity::class.java),
                 MenuBean("MotionLayout1", MotionLayoutActivity::class.java),

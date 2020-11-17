@@ -46,10 +46,6 @@
             android:name=".ui.activity.ExpandListActivity"
             android:screenOrientation="portrait"/>
 
-        <!--        <activity-->
-        <!--            android:name=".ui.activity.ScrollActivity"-->
-        <!--            android:screenOrientation="portrait"/>-->
-
         <activity
             android:name=".ui.activity.GoodsDetailActivity"
             android:screenOrientation="portrait"/>
