@@ -1,9 +1,11 @@
 package com.example.mylibrary.app
 
+import android.content.Context
 import com.example.common.app.BaseApplication
 import com.example.hzh.base.util.yes
 import com.example.mylibrary.BuildConfig
 import com.example.mylibrary.data.database.entity.MyObjectBox
+import com.example.mylibrary.util.HookUtils
 import io.objectbox.BoxStore
 import io.objectbox.android.AndroidObjectBrowser
 
@@ -20,6 +22,8 @@ class App : BaseApplication() {
 
     override fun onCreate() {
         super.onCreate()
+
+        HookUtils.hookInstrumentation(applicationContext)
 
         boxStore = MyObjectBox.builder().androidContext(applicationContext).build()
 

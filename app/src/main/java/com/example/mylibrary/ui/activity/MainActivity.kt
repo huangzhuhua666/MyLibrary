@@ -42,6 +42,7 @@ class MainActivity : UIActivity<ActivityMainBinding>() {
                 MenuBean("MotionLayout2", WzryActivity::class.java),
                 MenuBean("MotionLayout3", YoutubeActivity::class.java),
                 MenuBean("DragAndSwipeList", DragListActivity::class.java),
+                MenuBean("NoRegisterActivity", NoRegisterActivity::class.java),
             )
         )
     }
