@@ -43,6 +43,8 @@ class MainActivity : UIActivity<ActivityMainBinding>() {
                 MenuBean("MotionLayout3", YoutubeActivity::class.java),
                 MenuBean("DragAndSwipeList", DragListActivity::class.java),
                 MenuBean("NoRegisterActivity", NoRegisterActivity::class.java),
+                MenuBean("DrawImage", DrawImageActivity::class.java),
+                MenuBean("AudioRecorder", AudioRecorderActivity::class.java),
             )
         )
     }
