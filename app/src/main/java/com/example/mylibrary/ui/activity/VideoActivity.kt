@@ -12,6 +12,7 @@ import android.view.TextureView
 import com.example.common.activity.UIActivity
 import com.example.hzh.base.util.createFile
 import com.example.hzh.base.util.no
+import com.example.hzh.base.util.vbInflate
 import com.example.hzh.base.util.yes
 import com.example.hzh.ui.utils.filterFastClickListener
 import com.example.mylibrary.R
@@ -25,15 +26,13 @@ class VideoActivity : UIActivity<ActivityVideoBinding>(),
         TextureView.SurfaceTextureListener,
         MediaRecorder.OnInfoListener {
 
+    override val mBinding by vbInflate<ActivityVideoBinding>()
+
     private var isRecording = false
     private var mCamera: Camera? = null
     private var mRecorder: MediaRecorder? = null
     private val mTempPicFile by lazy { createFile("temp_pic.png") }
     private val mTempVideoFile by lazy { createFile("temp_video.mp4") }
-
-    override fun createViewBinding(): ActivityVideoBinding {
-        return ActivityVideoBinding.inflate(layoutInflater)
-    }
 
     override fun initView() {
         mTempPicFile.exists().yes { mTempPicFile.delete() }

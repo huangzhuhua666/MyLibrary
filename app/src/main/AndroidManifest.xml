@@ -79,6 +79,10 @@
             android:name=".ui.activity.StubActivity"
             android:screenOrientation="portrait"/>
 
+        <activity
+            android:name=".ui.activity.CatEyeActivity"
+            android:screenOrientation="portrait"/>
+
     </application>
 
 </manifest>

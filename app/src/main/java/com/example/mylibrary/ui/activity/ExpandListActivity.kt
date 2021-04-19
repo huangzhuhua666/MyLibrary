@@ -1,6 +1,7 @@
 package com.example.mylibrary.ui.activity
 
 import com.example.common.activity.UIActivity
+import com.example.hzh.base.util.vbInflate
 import com.example.mylibrary.adapter.ExpandListAdapter
 import com.example.mylibrary.data.bean.RootNode
 import com.example.mylibrary.data.bean.SecondNode
@@ -12,13 +13,11 @@ import com.gyf.immersionbar.ktx.immersionBar
  */
 class ExpandListActivity : UIActivity<ActivityExpandListBinding>() {
 
+    override val mBinding by vbInflate<ActivityExpandListBinding>()
+
     override val isStatusBarDarkFont: Boolean = true
 
     private val mAdapter by lazy { ExpandListAdapter() }
-
-    override fun createViewBinding(): ActivityExpandListBinding {
-        return ActivityExpandListBinding.inflate(layoutInflater)
-    }
 
     override fun initTitleBar() {
         super.initTitleBar()

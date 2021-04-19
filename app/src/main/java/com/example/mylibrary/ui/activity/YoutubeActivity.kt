@@ -1,6 +1,7 @@
 package com.example.mylibrary.ui.activity
 
 import com.example.common.activity.UIActivity
+import com.example.hzh.base.util.vbInflate
 import com.example.mylibrary.databinding.ActivityYoutubeBinding
 import com.gyf.immersionbar.ktx.hideStatusBar
 import com.gyf.immersionbar.ktx.immersionBar
@@ -10,9 +11,7 @@ import com.gyf.immersionbar.ktx.immersionBar
  */
 class YoutubeActivity : UIActivity<ActivityYoutubeBinding>() {
 
-    override fun createViewBinding(): ActivityYoutubeBinding {
-        return ActivityYoutubeBinding.inflate(layoutInflater)
-    }
+    override val mBinding by vbInflate<ActivityYoutubeBinding>()
 
     override fun initTitleBar() {
         super.initTitleBar()

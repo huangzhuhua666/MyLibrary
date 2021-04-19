@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.ActivityManager
 import android.content.Context
 import android.content.Intent
+import android.content.pm.ApplicationInfo
 import android.content.res.Resources
 import android.graphics.Point
 import android.net.Uri
@@ -80,9 +81,11 @@ fun Context.getInstallIntent(path: String): Intent? = File(path).let {
     Intent(Intent.ACTION_VIEW).apply {
         flags = Intent.FLAG_ACTIVITY_NEW_TASK
 
-        targetVersion(Build.VERSION_CODES.N, after = {
-            addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
-        })
+        targetVersion(
+            Build.VERSION_CODES.N,
+            after = {
+                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
+            })
 
         setDataAndType(getUriForFile(it), "application/vnd.android.package-archive")
     }
@@ -94,11 +97,14 @@ fun Context.getInstallIntent(path: String): Intent? = File(path).let {
  */
 fun Context.getUriForFile(file: File): Uri? {
     var uri: Uri? = null
-    targetVersion(Build.VERSION_CODES.N, after = {
-        uri = FileProvider.getUriForFile(this, "${packageName}.fileprovider", file)
-    }, before = {
-        uri = Uri.fromFile(file)
-    })
+    targetVersion(
+        Build.VERSION_CODES.N,
+        after = {
+            uri = FileProvider.getUriForFile(this, "${packageName}.fileprovider", file)
+        },
+        before = {
+            uri = Uri.fromFile(file)
+        })
     return uri
 }
 
@@ -106,10 +112,9 @@ fun Context.getUriForFile(file: File): Uri? {
  * 隐藏软键盘
  */
 fun Activity.hideKeyboard(view: View) {
-    view.run {
-        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(windowToken, 0)
-    }
+    (getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager).hideSoftInputFromWindow(
+        view.windowToken, 0
+    )
 }
 
 /**
@@ -207,3 +212,8 @@ fun Context.easyGetDrawable(
     @DrawableRes id: Int,
     theme: Resources.Theme? = null
 ) = ResourcesCompat.getDrawable(resources, id, theme)
+
+/**
+ * 是否为Debug的APP
+ */
+fun Context.isDebugApp() = (applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE) != 0

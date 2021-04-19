@@ -2,6 +2,7 @@ package com.example.mylibrary.ui.activity
 
 import com.chad.library.adapter.base.BaseBinderAdapter
 import com.example.common.activity.UIActivity
+import com.example.hzh.base.util.vbInflate
 import com.example.mylibrary.adapter.binder.MenuBean
 import com.example.mylibrary.adapter.binder.MenuBinder
 import com.example.mylibrary.databinding.ActivityMainBinding
@@ -10,14 +11,12 @@ import com.gyf.immersionbar.ktx.immersionBar
 
 class MainActivity : UIActivity<ActivityMainBinding>() {
 
+    override val mBinding by vbInflate<ActivityMainBinding>()
+
     override val isStatusBarDarkFont: Boolean
         get() = true
 
     private val mAdapter by lazy { BaseBinderAdapter().addItemBinder(MenuBinder()) }
-
-    override fun createViewBinding(): ActivityMainBinding {
-        return ActivityMainBinding.inflate(layoutInflater)
-    }
 
     override fun initTitleBar() {
         super.initTitleBar()
@@ -45,6 +44,7 @@ class MainActivity : UIActivity<ActivityMainBinding>() {
                 MenuBean("NoRegisterActivity", NoRegisterActivity::class.java),
                 MenuBean("DrawImage", DrawImageActivity::class.java),
                 MenuBean("AudioRecorder", AudioRecorderActivity::class.java),
+                MenuBean("CatEye", CatEyeActivity::class.java),
             )
         )
     }

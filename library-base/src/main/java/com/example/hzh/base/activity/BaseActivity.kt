@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
 import com.example.hzh.base.BuildConfig
 import com.example.hzh.base.util.hideKeyboard
-import kotlin.properties.Delegates
 
 /**
  * Create by hzh on 2020/5/8.
@@ -19,15 +18,14 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
 
     protected val mContext by lazy { this }
 
-    protected var mBinding by Delegates.notNull<VB>()
-        private set
+    protected abstract val mBinding: VB
 
     protected open val isClickHideKeyboard: Boolean
         get() = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mBinding = createViewBinding().also { setContentView(it.root) }
+        setContentView(mBinding.root)
 
         initTitleBar()
 
@@ -98,11 +96,6 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
      *  ViewModel中的LiveData的观察都放到这里来
      */
     protected open fun bindViewModelObserve() {}
-
-    /**
-     * 创建ViewBinding
-     */
-    protected abstract fun createViewBinding(): VB
 
     protected abstract fun initView()
 

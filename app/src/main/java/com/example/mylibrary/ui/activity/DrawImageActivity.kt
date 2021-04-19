@@ -6,6 +6,7 @@ import android.os.Environment
 import android.view.SurfaceHolder
 import com.example.common.activity.UIActivity
 import com.example.hzh.base.util.isRealEmpty
+import com.example.hzh.base.util.vbInflate
 import com.example.hzh.base.util.yes
 import com.example.mylibrary.databinding.ActivityDrawImageBinding
 import com.gyf.immersionbar.ktx.immersionBar
@@ -16,11 +17,9 @@ import java.io.File
  */
 class DrawImageActivity : UIActivity<ActivityDrawImageBinding>() {
 
-    override val isStatusBarDarkFont: Boolean = true
+    override val mBinding by vbInflate<ActivityDrawImageBinding>()
 
-    override fun createViewBinding(): ActivityDrawImageBinding {
-        return ActivityDrawImageBinding.inflate(layoutInflater)
-    }
+    override val isStatusBarDarkFont: Boolean = true
 
     override fun initTitleBar() {
         super.initTitleBar()

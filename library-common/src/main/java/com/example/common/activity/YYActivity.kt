@@ -14,7 +14,7 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout
  */
 abstract class YYActivity<VB : ViewBinding, VM : BaseVM> : UIActivity<VB>() {
 
-    abstract val mViewModel: VM
+    protected abstract val mViewModel: VM
 
     private val mLoadingDialog by lazy { LoadingDialog() }
 

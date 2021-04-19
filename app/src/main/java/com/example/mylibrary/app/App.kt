@@ -1,6 +1,5 @@
 package com.example.mylibrary.app
 
-import android.content.Context
 import com.example.common.app.BaseApplication
 import com.example.hzh.base.util.yes
 import com.example.mylibrary.BuildConfig

@@ -1,6 +1,7 @@
 package com.example.mylibrary.ui.activity
 
 import com.example.common.activity.UIActivity
+import com.example.hzh.base.util.vbInflate
 import com.example.mylibrary.databinding.ActivityWzryBinding
 import com.gyf.immersionbar.ktx.hideStatusBar
 import com.gyf.immersionbar.ktx.immersionBar
@@ -10,9 +11,7 @@ import com.gyf.immersionbar.ktx.immersionBar
  */
 class WzryActivity : UIActivity<ActivityWzryBinding>() {
 
-    override fun createViewBinding(): ActivityWzryBinding {
-        return ActivityWzryBinding.inflate(layoutInflater)
-    }
+    override val mBinding by vbInflate<ActivityWzryBinding>()
 
     override fun initTitleBar() {
         super.initTitleBar()

@@ -5,6 +5,7 @@ import com.chad.library.adapter.base.entity.node.BaseNode
 import com.chad.library.adapter.base.listener.OnItemDragListener
 import com.example.common.activity.UIActivity
 import com.example.hzh.base.util.no
+import com.example.hzh.base.util.vbInflate
 import com.example.hzh.base.util.yes
 import com.example.mylibrary.adapter.DragAndSwipeAdapter
 import com.example.mylibrary.data.bean.DragTextBean
@@ -18,13 +19,11 @@ import com.gyf.immersionbar.ktx.immersionBar
  */
 class DragListActivity : UIActivity<ActivityDragListBinding>() {
 
+    override val mBinding by vbInflate<ActivityDragListBinding>()
+
     override val isStatusBarDarkFont: Boolean = true
 
     private val mAdapter by lazy { DragAndSwipeAdapter() }
-
-    override fun createViewBinding(): ActivityDragListBinding {
-        return ActivityDragListBinding.inflate(layoutInflater)
-    }
 
     override fun initTitleBar() {
         super.initTitleBar()

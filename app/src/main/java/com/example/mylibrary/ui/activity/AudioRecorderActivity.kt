@@ -7,6 +7,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.common.activity.UIActivity
 import com.example.hzh.base.util.closeSafely
+import com.example.hzh.base.util.vbInflate
 import com.example.hzh.base.util.no
 import com.example.hzh.base.util.yes
 import com.example.mylibrary.databinding.ActivityAudioRecorderBinding
@@ -42,6 +43,8 @@ class AudioRecorderActivity : UIActivity<ActivityAudioRecorderBinding>() {
         private const val AUDIO_FORMAT = AudioFormat.ENCODING_PCM_16BIT
     }
 
+    override val mBinding by vbInflate<ActivityAudioRecorderBinding>()
+
     override val isStatusBarDarkFont: Boolean = true
 
     private val isRecording = MutableLiveData(false)
@@ -49,10 +52,6 @@ class AudioRecorderActivity : UIActivity<ActivityAudioRecorderBinding>() {
 
     private val isPlaying = MutableLiveData(false)
     private var mTrack: AudioTrack? = null
-
-    override fun createViewBinding(): ActivityAudioRecorderBinding {
-        return ActivityAudioRecorderBinding.inflate(layoutInflater)
-    }
 
     override fun initTitleBar() {
         super.initTitleBar()
@@ -101,9 +100,13 @@ class AudioRecorderActivity : UIActivity<ActivityAudioRecorderBinding>() {
             }
         }
 
-        isRecording.observe(mContext) { mBinding.btnRecord.text = it.yes { "StopRecord" }.no { "StartRecord" } }
+        isRecording.observe(mContext) {
+            mBinding.btnRecord.text = it.yes { "StopRecord" }.no { "StartRecord" }
+        }
 
-        isPlaying.observe(mContext) { mBinding.btnPlay.text = it.yes { "StopPlay" }.no { "StartPlay" } }
+        isPlaying.observe(mContext) {
+            mBinding.btnPlay.text = it.yes { "StopPlay" }.no { "StartPlay" }
+        }
     }
 
     private fun startRecord() {

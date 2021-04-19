@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.chad.library.adapter.base.BaseBinderAdapter
 import com.example.common.activity.YYActivity
+import com.example.hzh.base.util.vbInflate
 import com.example.hzh.ui.utils.filterFastClickListener
 import com.example.mylibrary.adapter.binder.StudentBinder
 import com.example.mylibrary.adapter.binder.TeacherBinder
@@ -18,6 +19,8 @@ import com.gyf.immersionbar.ktx.immersionBar
  */
 @Suppress("UNCHECKED_CAST")
 class ObjectBoxActivity : YYActivity<ActivityObjectBoxBinding, ObjectBoxVM>() {
+
+    override val mBinding by vbInflate<ActivityObjectBoxBinding>()
 
     override val isStatusBarDarkFont: Boolean
         get() = true
@@ -36,10 +39,6 @@ class ObjectBoxActivity : YYActivity<ActivityObjectBoxBinding, ObjectBoxVM>() {
             addItemBinder(mTeacherBinder, TeacherBinder.Diff())
             addItemBinder(mStudentBinder, StudentBinder.Diff())
         }
-    }
-
-    override fun createViewBinding(): ActivityObjectBoxBinding {
-        return ActivityObjectBoxBinding.inflate(layoutInflater)
     }
 
     override fun initTitleBar() {

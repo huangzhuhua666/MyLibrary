@@ -1,6 +1,7 @@
 package com.example.mylibrary.ui.activity
 
 import com.example.common.activity.UIActivity
+import com.example.hzh.base.util.vbInflate
 import com.example.mylibrary.databinding.ActivityMotionLayoutBinding
 import com.gyf.immersionbar.ktx.immersionBar
 
@@ -9,11 +10,9 @@ import com.gyf.immersionbar.ktx.immersionBar
  */
 class MotionLayoutActivity : UIActivity<ActivityMotionLayoutBinding>() {
 
-    override val isStatusBarDarkFont: Boolean = true
+    override val mBinding by vbInflate<ActivityMotionLayoutBinding>()
 
-    override fun createViewBinding(): ActivityMotionLayoutBinding {
-        return ActivityMotionLayoutBinding.inflate(layoutInflater)
-    }
+    override val isStatusBarDarkFont: Boolean = true
 
     override fun initTitleBar() {
         super.initTitleBar()

@@ -3,6 +3,7 @@ package com.example.mylibrary.ui.activity
 import android.os.Bundle
 import android.util.Log
 import com.example.hzh.base.activity.BaseActivity
+import com.example.hzh.base.util.vbInflate
 import com.example.mylibrary.databinding.ActivityNoRegisterBinding
 
 /**
@@ -10,13 +11,11 @@ import com.example.mylibrary.databinding.ActivityNoRegisterBinding
  */
 class NoRegisterActivity : BaseActivity<ActivityNoRegisterBinding>() {
 
+    override val mBinding by vbInflate<ActivityNoRegisterBinding>()
+
     companion object {
 
         private const val TAG = "Hzh"
-    }
-
-    override fun createViewBinding(): ActivityNoRegisterBinding {
-        return ActivityNoRegisterBinding.inflate(layoutInflater)
     }
 
     override fun initView() {
