@@ -2,7 +2,7 @@ ext {
     // region android开发版本
     android = [
             compileSdkVersion: 30,
-            buildToolsVersion: "30.0.2",
+            buildToolsVersion: "30.0.3",
             minSdkVersion    : 21,
             targetSdkVersion : 30,
             versionCode      : 1,
@@ -29,11 +29,6 @@ ext {
 
     // region 依赖第三方配置
     dependencies = [
-            // my lib
-            "baselib"            : "com.hzh.base:baselib:1.0.1",
-            "networklib"         : "com.hzh.network:networklib:1.0.0",
-            "uilib"              : "com.hzh.ui:uilib:1.0.0",
-
             // multidex
             "multidex"           : "androidx.multidex:multidex:2.0.1",
 

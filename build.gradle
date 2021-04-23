@@ -2,8 +2,7 @@
 apply from: "config.gradle"
 
 buildscript {
-    ext.gradle_version = '3.6.2'
-    ext.kotlin_version = '1.4.10'
+    ext.kotlin_version = '1.4.20'
     ext.objectbox_version = '2.7.0'
     repositories {
         google()
@@ -11,11 +10,9 @@ buildscript {
         maven { url "https://jitpack.io" }
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:$gradle_version"
+        classpath "com.android.tools.build:gradle:4.1.1"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "io.objectbox:objectbox-gradle-plugin:$objectbox_version"
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
     }
 }
 
