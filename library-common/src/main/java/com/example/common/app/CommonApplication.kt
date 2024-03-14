@@ -1,6 +1,5 @@
 package com.example.common.app
 
-import android.app.Application
 import androidx.multidex.MultiDex
 import com.example.common.BuildConfig
 import com.example.hzh.base.application.BaseApplication
@@ -18,7 +17,6 @@ import okhttp3.OkHttpClient
 import rxhttp.wrapper.param.RxHttp
 import java.util.concurrent.TimeUnit
 import javax.net.ssl.HostnameVerifier
-import kotlin.properties.Delegates
 
 /**
  * Create by hzh on 2020/6/15.

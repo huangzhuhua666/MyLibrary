@@ -1,5 +1,6 @@
 package com.example.hzh.base.util
 
+import java.util.concurrent.ThreadPoolExecutor
 import java.util.concurrent.atomic.AtomicInteger
 import kotlin.concurrent.thread
 
@@ -8,7 +9,19 @@ import kotlin.concurrent.thread
  */
 object ThreadPoolUtils {
 
-    private val sThreadId by lazy { AtomicInteger() }
+    private val sThreadId = AtomicInteger()
+
+    private val sExecutorSingle = ThreadExecutors.newFixedThreadPool(1, "Single")
+
+    fun executeOnSingle(block: () -> Unit) {
+        sExecutorSingle.execute {
+            try {
+                block.invoke()
+            } catch (e: Throwable) {
+                e.printStackTrace()
+            }
+        }
+    }
 
     fun executeOnNewThread(block: () -> Unit) {
         thread(

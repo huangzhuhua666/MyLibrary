@@ -2,7 +2,7 @@ package com.example.hzh.base.performance.fps
 
 import android.content.Context
 import android.view.WindowManager
-import com.example.hzh.base.application.BaseApplication
+import com.example.hzh.base.Global
 import com.example.hzh.base.manager.ActivityRecordMgr
 
 /**
@@ -48,7 +48,7 @@ class FPSMonitor private constructor() {
     }
 
     init {
-        setFrameRate(BaseApplication.instance)
+        setFrameRate(Global.getApplication())
     }
 
     fun show() {

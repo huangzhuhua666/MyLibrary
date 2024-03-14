@@ -12,7 +12,7 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.example.hzh.base.BuildConfig
-import com.example.hzh.base.application.BaseApplication
+import com.example.hzh.base.Global
 import com.example.hzh.base.manager.internal.ActivityStateChecker
 import com.example.hzh.base.util.ActivityLifeCycleCallbackAdapter
 import com.example.hzh.base.util.ActivityUtils
@@ -36,7 +36,7 @@ class ActivityRecordMgr private constructor() : LifecycleObserver {
 
         fun getTaskTopActivity(activity: Activity?): ComponentName? {
             try {
-                val taskInfos = (BaseApplication.instance.getSystemService(Context.ACTIVITY_SERVICE) as? ActivityManager)?.getRunningTasks(10)
+                val taskInfos = (Global.getApplication().getSystemService(Context.ACTIVITY_SERVICE) as? ActivityManager)?.getRunningTasks(10)
                 if (taskInfos.isNullOrEmpty()) {
                     return null
                 }
@@ -80,7 +80,7 @@ class ActivityRecordMgr private constructor() : LifecycleObserver {
     private var mLifecycleEventOnStop = false
 
     init {
-        BaseApplication.instance.registerActivityLifecycleCallbacks(object : ActivityLifeCycleCallbackAdapter() {
+        Global.getApplication().registerActivityLifecycleCallbacks(object : ActivityLifeCycleCallbackAdapter() {
 
             override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
                 Log.i(TAG, ">>>>> on activity created: ${activity.localClassName}")

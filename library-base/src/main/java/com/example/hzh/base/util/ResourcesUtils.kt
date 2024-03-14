@@ -2,7 +2,7 @@ package com.example.hzh.base.util
 
 import android.content.Context
 import android.os.Build
-import com.example.hzh.base.application.BaseApplication
+import com.example.hzh.base.Global
 import kotlin.math.abs
 
 /**
@@ -11,7 +11,7 @@ import kotlin.math.abs
 object ResourcesUtils {
 
     fun dp2px(dp: Number): Int {
-        val scale = BaseApplication.instance.resources.displayMetrics.density
+        val scale = Global.getApplication().resources.displayMetrics.density
         val dpInDouble = dp.toDouble()
         return if (dp.toDouble() < 0) {
             -(abs(dpInDouble) * scale + 0.5f).toInt()
@@ -25,7 +25,7 @@ object ResourcesUtils {
      * @param resId 资源文件中定义的颜色id
      */
     fun getColor(resId: Int): Int {
-        return getColor(BaseApplication.instance, resId)
+        return getColor(Global.getApplication(), resId)
     }
 
     /**
@@ -34,7 +34,7 @@ object ResourcesUtils {
      * @param resId 资源文件中定义的颜色id
      */
     fun getColor(context: Context?, resId: Int): Int {
-        val realContext = context ?: BaseApplication.instance
+        val realContext = context ?: Global.getApplication()
         return if (Build.VERSION.SDK_INT >= 23) {
             realContext.resources.getColor(resId, realContext.theme)
         } else {

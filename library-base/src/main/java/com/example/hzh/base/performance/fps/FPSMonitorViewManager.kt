@@ -7,7 +7,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
-import com.example.hzh.base.application.BaseApplication
+import com.example.hzh.base.Global
 import com.example.hzh.base.manager.ActivityRecordMgr
 import com.example.hzh.base.util.ActivityLifeCycleCallbackAdapter
 import com.example.hzh.base.util.ResourcesUtils
@@ -24,7 +24,7 @@ internal class FPSMonitorViewManager {
     private var mActivityRecordMap = WeakHashMap<Activity, WeakReference<IFPSMonitorView>>()
 
     init {
-        BaseApplication.instance.registerActivityLifecycleCallbacks(object : ActivityLifeCycleCallbackAdapter() {
+        Global.getApplication().registerActivityLifecycleCallbacks(object : ActivityLifeCycleCallbackAdapter() {
 
             override fun onActivityStarted(activity: Activity) {
                 if (!mIsEnable || mActivityRecordMap[activity]?.get() != null) {
