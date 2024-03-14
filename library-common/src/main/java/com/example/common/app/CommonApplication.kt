@@ -3,6 +3,7 @@ package com.example.common.app
 import android.app.Application
 import androidx.multidex.MultiDex
 import com.example.common.BuildConfig
+import com.example.hzh.base.application.BaseApplication
 import com.example.hzh.network.NetConfig
 import com.example.hzh.network.converter.JsonMapConverter
 import com.example.hzh.network.cookie.MyCookie
@@ -22,12 +23,9 @@ import kotlin.properties.Delegates
 /**
  * Create by hzh on 2020/6/15.
  */
-open class BaseApplication : Application() {
+open class CommonApplication : BaseApplication() {
 
     companion object {
-        var instance by Delegates.notNull<Application>()
-
-        val debug = BuildConfig.DEBUG
 
         val kv by lazy { MMKV.defaultMMKV()!! }
 
@@ -39,9 +37,6 @@ open class BaseApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-
-        instance = this
-
         // mmkv
         MMKV.initialize(applicationContext)
 

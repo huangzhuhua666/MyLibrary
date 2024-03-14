@@ -1,6 +1,6 @@
 package com.example.mylibrary.app
 
-import com.example.common.app.BaseApplication
+import com.example.common.app.CommonApplication
 import com.example.hzh.base.util.yes
 import com.example.mylibrary.BuildConfig
 import com.example.mylibrary.data.database.entity.MyObjectBox
@@ -11,7 +11,7 @@ import io.objectbox.android.AndroidObjectBrowser
 /**
  * Create by hzh on 2020/6/15.
  */
-class App : BaseApplication() {
+class App : CommonApplication() {
 
     companion object {
 
