@@ -52,7 +52,7 @@ object ReflectUtils {
         val key = generateMethodKey(clazz, name, *paramTypes)
         synchronized(sDeclaredMethodCache) {
             if (sDeclaredMethodCache.containsKey(key)) {
-                return sDeclaredMethodCache.get(key)
+                return sDeclaredMethodCache[key]
             }
         }
 
