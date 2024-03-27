@@ -6,6 +6,16 @@ plugins {
     id("io.objectbox")
 }
 
+tasks.register<Copy>("copyCommitMsgFileToHookDir") {
+    from("../jenkins_build")
+    into("../.git/hooks")
+    include("commit-msg")
+}
+
+tasks.register<Exec>("chmodCommitMsgFilePermisstion") {
+    commandLine("chmod", "777", "../.git/hooks/commit-msg")
+}
+
 android {
     val pkName = "com.example.mylibrary"
     namespace = pkName
