@@ -1,7 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("org.jetbrains.kotlin.kapt")
+    id("com.google.devtools.ksp")
 
     id("io.objectbox")
 }
@@ -61,7 +61,7 @@ dependencies {
 
     implementation(project(":library-common"))
 
-    kapt(thirdLib.glide.compiler)
+    ksp(thirdLib.glide.compiler)
 
     // region test
     testImplementation(androidxLib.junit)

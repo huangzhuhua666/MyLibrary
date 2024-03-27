@@ -1,7 +1,7 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    id("org.jetbrains.kotlin.kapt")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -50,7 +50,7 @@ dependencies {
     // region rxhttp
     val rxHttpVersion = "3.2.5"
     api("com.github.liujingxing.rxhttp:rxhttp:$rxHttpVersion")
-    kapt("com.github.liujingxing.rxhttp:rxhttp-compiler:$rxHttpVersion")
+    ksp("com.github.liujingxing.rxhttp:rxhttp-compiler:$rxHttpVersion")
     // endregion
 
     api("com.squareup.okhttp3:okhttp:4.12.0")
