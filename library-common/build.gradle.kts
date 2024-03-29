@@ -1,15 +1,15 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
 }
 
 android {
     namespace = "com.example.common"
 
-    compileSdk = appConfig.versions.compileSdk.get().toInt()
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        minSdk = appConfig.versions.minSdk.get().toInt()
+        minSdk = libs.versions.minSdk.get().toInt()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -51,52 +51,52 @@ dependencies {
     api(project(":library-ui"))
     // endregion
 
-    api("androidx.legacy:legacy-support-core-ui:1.0.0")
+    api(libs.legacy.support.core.ui)
 
     // region immersionbar
-    api(thirdLib.immersionbar)
-    api(thirdLib.immersionbar.ktx)
+    api(libs.immersionbar)
+    api(libs.immersionbar.ktx)
     // endregion
 
-    api(thirdLib.mmkv)
+    api(libs.mmkv)
 
-    api(thirdLib.banner)
+    api(libs.banner)
 
-    api(thirdLib.logger)
+    api(libs.logger)
 
     // region SmartRefresh
-    api(thirdLib.smartRefresh)
-    api(thirdLib.smartRefresh.header)
+    api(libs.smart.refresh)
+    api(libs.smart.refresh.header)
     // endregion
 
-    api(thirdLib.xpopup)
+    api(libs.xpopup)
 
-    api(thirdLib.brvah)
+    api(libs.brvah)
 
     // region Glide
-    api(thirdLib.glide)
-    api(thirdLib.glide.integration)
+    api(libs.glide)
+    api(libs.glide.integration)
     // endregion
 
-    api(thirdLib.liveDataBus)
+    api(libs.live.data.bus)
 
-    api(thirdLib.multidex)
+    api(libs.multidex)
 
-    api(thirdLib.permissionx)
+    api(libs.permissionx)
 
-    api(thirdLib.title)
+    api(libs.title)
 
-    api(thirdLib.consecutiveScroller)
+    api(libs.consecutive.scroller)
 
-    api(thirdLib.tabLayout)
+    api(libs.tab.layout)
 
-    api(thirdLib.pictureSelector)
+    api(libs.picture.selector)
 
-    api(androidxLib.flexbox)
+    api(libs.flexbox)
 
     // region test
-    testImplementation(androidxLib.junit)
-    androidTestImplementation(androidxLib.ext.junit)
-    androidTestImplementation(androidxLib.espresso.core)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.espresso)
     // endregion
 }

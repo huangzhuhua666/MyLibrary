@@ -1,16 +1,16 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
-    id("com.google.devtools.ksp")
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.ksp)
 }
 
 android {
     namespace = "com.example.hzh.network"
 
-    compileSdk = 30
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        minSdk = 21
+        minSdk = libs.versions.minSdk.get().toInt()
 
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -42,23 +42,22 @@ android {
 
 dependencies {
     // region kotlin
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.23")
-    implementation("org.jetbrains.kotlin:kotlin-reflect:1.8.10")
-    implementation("androidx.core:core-ktx:1.9.0")
+    implementation(libs.kotlin.stdlib)
+    implementation(libs.kotlin.reflect)
+    implementation(libs.androidx.ktx)
     // endregion
 
     // region rxhttp
-    val rxHttpVersion = "3.2.5"
-    api("com.github.liujingxing.rxhttp:rxhttp:$rxHttpVersion")
-    ksp("com.github.liujingxing.rxhttp:rxhttp-compiler:$rxHttpVersion")
+    api(libs.rxhttp)
+    ksp(libs.rxhttp.compiler)
     // endregion
 
-    api("com.squareup.okhttp3:okhttp:4.12.0")
+    api(libs.okhttp)
 
     // region test
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.espresso)
     // endregion
 }
 

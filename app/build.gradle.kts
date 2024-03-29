@@ -1,7 +1,7 @@
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
-    id("com.google.devtools.ksp")
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.ksp)
 
     id("io.objectbox")
 }
@@ -20,12 +20,12 @@ android {
     val pkName = "com.example.mylibrary"
     namespace = pkName
 
-    compileSdk = appConfig.versions.compileSdk.get().toInt()
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
         applicationId = pkName
-        minSdk = appConfig.versions.minSdk.get().toInt()
-        targetSdk = appConfig.versions.targetSdk.get().toInt()
+        minSdk = libs.versions.minSdk.get().toInt()
+        targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = 1
         versionName = "1.0.0"
 
@@ -71,13 +71,13 @@ dependencies {
 
     implementation(project(":library-common"))
 
-    ksp(thirdLib.glide.compiler)
+    ksp(libs.glide.compiler)
 
     // region test
-    testImplementation(androidxLib.junit)
-    androidTestImplementation(androidxLib.ext.junit)
-    androidTestImplementation(androidxLib.espresso.core)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.espresso)
     // endregion
 
-    debugImplementation("com.squareup.leakcanary:leakcanary-android:3.0-alpha-1")
+    debugImplementation(libs.leakcanary)
 }

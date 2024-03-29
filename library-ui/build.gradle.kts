@@ -1,15 +1,15 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
 }
 
 android {
     namespace = "com.example.hzh.ui"
 
-    compileSdk = 30
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        minSdk = 21
+        minSdk = libs.versions.minSdk.get().toInt()
 
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -45,22 +45,22 @@ android {
 
 dependencies {
     // region kotlin
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.23")
-    implementation("androidx.core:core-ktx:1.9.0")
+    implementation(libs.kotlin.stdlib)
+    implementation(libs.androidx.ktx)
     // endregion
 
-    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation(libs.appcompat)
 
-    implementation("com.google.android.material:material:1.8.0")
+    implementation(libs.material)
 
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation(libs.constraintlayout)
 
-    implementation("androidx.viewpager2:viewpager2:1.0.0")
+    implementation(libs.viewpager2)
 
     // region test
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.espresso)
     // endregion
 }
 
