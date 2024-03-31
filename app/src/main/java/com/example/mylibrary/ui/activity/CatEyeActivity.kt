@@ -4,13 +4,13 @@ import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.chad.library.adapter.base.BaseBinderAdapter
 import com.example.common.activity.UIActivity
 import com.example.hzh.base.util.vbInflate
 import com.example.mylibrary.adapter.binder.MovieBinder
-import com.example.mylibrary.app.GlideApp
 import com.example.mylibrary.databinding.ActivityCatEyeBinding
 import com.example.mylibrary.util.gaussianBlur
 import com.example.mylibrary.widget.MovieLayoutManager
@@ -73,7 +73,7 @@ class CatEyeActivity : UIActivity<ActivityCatEyeBinding>(),
 
     private suspend fun setMovieBg(index: Int) {
         val bitmap = withContext(Dispatchers.IO) {
-            GlideApp.with(mContext)
+            Glide.with(mContext)
                 .asBitmap()
                 .load(mData[index])
                 .submit()
@@ -85,7 +85,7 @@ class CatEyeActivity : UIActivity<ActivityCatEyeBinding>(),
         val currBg = BitmapDrawable(resources, gaussianBlur(15f, bitmap))
         mPreBg = mPreBg ?: currBg
 
-        GlideApp.with(mContext)
+        Glide.with(mContext)
             .load(bitmap)
             .diskCacheStrategy(DiskCacheStrategy.NONE)
             .skipMemoryCache(true)

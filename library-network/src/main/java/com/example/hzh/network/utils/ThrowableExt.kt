@@ -14,16 +14,18 @@ import java.util.concurrent.TimeoutException
  */
 val Throwable.code: Int
     get() {
-        val errorCode = when (this) {
-            is HttpStatusCodeException -> statusCode // Http状态异常码
-            is ParseException -> errorCode // 业务code异常
-            else -> "-1"
-        }
-
-        return try {
-            errorCode.toInt()
-        } catch (e: Exception) {
-            -1
+        return when (this) {
+            // Http状态异常码
+            is HttpStatusCodeException -> statusCode
+            // 业务code异常
+            is ParseException -> {
+                try {
+                    errorCode.toInt()
+                } catch (e: Exception) {
+                    -1
+                }
+            }
+            else -> -1
         }
     }
 

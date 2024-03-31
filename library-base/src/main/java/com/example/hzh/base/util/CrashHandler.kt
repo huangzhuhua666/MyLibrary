@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Environment
+import com.example.hzh.base.Global
 import java.io.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -68,12 +69,12 @@ class CrashHandler private constructor() : Thread.UncaughtExceptionHandler {
 
     private fun collectDeviceInfo() {
         try {
-            mContext.packageManager.getPackageInfo(
-                mContext.packageName,
+            Global.getPackageManager()?.getPackageInfo(
+                Global.getPackageName(),
                 PackageManager.GET_ACTIVITIES
-            )?.run {
-                mDeviceInfo["version_code"] = versionCode.toString()
-                mDeviceInfo["version_name"] = versionName ?: ""
+            )?.let {
+                mDeviceInfo["version_code"] = it.versionCode.toString()
+                mDeviceInfo["version_name"] = it.versionName ?: ""
             }
         } catch (e: PackageManager.NameNotFoundException) {
             e.printStackTrace()

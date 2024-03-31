@@ -7,7 +7,7 @@ import com.example.common.viewmodel.BaseVM
 import com.example.common.widget.LoadingDialog
 import com.example.common.widget.StatusLayout
 import com.example.hzh.network.utils.msg
-import com.scwang.smartrefresh.layout.SmartRefreshLayout
+import com.scwang.smart.refresh.layout.SmartRefreshLayout
 
 /**
  * Create by hzh on 2020/5/18.

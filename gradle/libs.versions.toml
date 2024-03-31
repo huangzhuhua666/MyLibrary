@@ -1,0 +1,94 @@
+[versions]
+compileSdk = "34"
+minSdk = "21"
+targetSdk = "30"
+
+androidGradlePlugin = "8.1.1"
+kotlinPlugin = "1.9.0"
+ksp = "1.9.0-1.0.13"
+
+kotlin = "1.9.23"
+kotlinReflect = "1.9.22"
+kotlinxCoroutines = "1.7.3"
+ktx = "1.12.0"
+navigation = "2.7.7"
+junit = "4.13.2"
+androidxJunit = "1.1.5"
+espresso = "3.5.1"
+flexbox = "3.0.0"
+appcompat = "1.6.1"
+material = "1.11.0"
+viewpager2 = "1.0.0"
+leakcanary = "3.0-alpha-1"
+glide = "5.0.0-rc01"
+immersionbar = "3.2.2"
+legacySupportCoreUi = "1.0.0"
+mmkv = "1.3.4"
+multidex = "2.0.1"
+smartRefresh = "2.1.0"
+brvah = "3.0.3"
+liveDataBus = "1.8.0"
+logger = "2.2.0"
+banner = "3.1.2"
+xpopup = "2.10.0"
+permissionx = "1.7.1"
+consecutiveScroller = "4.1.0"
+title = "10.5"
+tabLayout = "1.5.5"
+pictureSelector = "v2.5.8"
+rxHttp = "3.2.5"
+okHttp = "4.12.0"
+constraintLayout = "2.1.4"
+lifecycleExtensions = "2.2.0"
+lifecycleViewmodelKtx = "2.7.0"
+lifecycleLiveDataKtx = "2.7.0"
+
+[libraries]
+androidx-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "ktx" }
+kotlin-reflect = { group = "org.jetbrains.kotlin", name = "kotlin-reflect", version.ref = "kotlinReflect" }
+kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
+kotlinx-coroutines-android = { group = "org.jetbrains.kotlin", name = "kotlin-reflect", version.ref = "kotlinReflect" }
+kotlinx-coroutines-core = { group = "org.jetbrains.kotlin", name = "kotlin-reflect", version.ref = "kotlinReflect" }
+navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigation" }
+navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigation" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidxJunit" }
+espresso = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso" }
+flexbox = { group = "com.google.android.flexbox", name = "flexbox", version.ref = "flexbox" }
+appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+viewpager2 = { group = "androidx.viewpager2", name = "viewpager2", version.ref = "viewpager2" }
+leakcanary = { group = "com.squareup.leakcanary", name = "leakcanary-android", version.ref = "leakcanary" }
+glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
+glide-ksp = { group = "com.github.bumptech.glide", name = "ksp", version.ref = "glide" }
+glide-integration = { group = "com.github.bumptech.glide", name = "okhttp3-integration", version.ref = "glide" }
+immersionbar = { group = "com.geyifeng.immersionbar", name = "immersionbar", version.ref = "immersionbar" }
+immersionbar-ktx = { group = "com.geyifeng.immersionbar", name = "immersionbar-ktx", version.ref = "immersionbar" }
+legacy-support-core-ui = { group = "androidx.legacy", name = "legacy-support-core-ui", version.ref = "legacySupportCoreUi" }
+mmkv = { group = "com.tencent", name = "mmkv", version.ref = "mmkv" }
+multidex = { group = "androidx.multidex", name = "multidex", version.ref = "multidex" }
+smart-refresh = { group = "io.github.scwang90", name = "refresh-layout-kernel", version.ref = "smartRefresh" }
+smart-refresh-header = { group = "io.github.scwang90", name = "refresh-header-classics", version.ref = "smartRefresh" }
+brvah = { group = "com.github.CymChad", name = "BaseRecyclerViewAdapterHelper", version.ref = "brvah" }
+live-data-bus = { group = "io.github.jeremyliao", name = "live-event-bus-x", version.ref = "liveDataBus" }
+logger = { group = "com.orhanobut", name = "logger", version.ref = "logger" }
+banner = { group = "com.github.zhpanvip", name = "BannerViewPager", version.ref = "banner" }
+xpopup = { group = "com.github.li-xiaojun", name = "XPopup", version.ref = "xpopup" }
+permissionx = { group = "com.guolindev.permissionx", name = "permissionx", version.ref = "permissionx" }
+consecutive-scroller = { group = "com.github.donkingliang", name = "ConsecutiveScroller", version.ref = "consecutiveScroller" }
+title = { group = "com.github.getActivity", name = "TitleBar", version.ref = "title" }
+tab-layout = { group = "com.github.angcyo.DslTablayout", name = "TabLayout", version.ref = "tabLayout" }
+picture-selector = { group = "com.github.LuckSiege.PictureSelector", name = "picture_library", version.ref = "pictureSelector" }
+rxhttp = { group = "com.github.liujingxing.rxhttp", name = "rxhttp", version.ref = "rxHttp" }
+rxhttp-compiler = { group = "com.github.liujingxing.rxhttp", name = "rxhttp-compiler", version.ref = "rxHttp" }
+okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okHttp" }
+constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintLayout" }
+lifecycle-extensions = { group = "androidx.lifecycle", name = "lifecycle-extensions", version.ref = "lifecycleExtensions" }
+lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
+lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycleLiveDataKtx" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
+android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlinPlugin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }

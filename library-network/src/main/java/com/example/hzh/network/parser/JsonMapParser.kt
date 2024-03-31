@@ -5,7 +5,8 @@ import com.example.hzh.network.bean.JsonMap
 import okhttp3.Response
 import rxhttp.wrapper.annotation.Parser
 import rxhttp.wrapper.exception.ParseException
-import rxhttp.wrapper.parse.AbstractParser
+import rxhttp.wrapper.parse.TypeParser
+import rxhttp.wrapper.utils.Converter
 import java.io.IOException
 import java.lang.reflect.Type
 
@@ -13,7 +14,7 @@ import java.lang.reflect.Type
  * Create by hzh on 2020/6/3.
  */
 @Parser(name = "JsonMap")
-open class JsonMapParser : AbstractParser<JsonMap> {
+class JsonMapParser : TypeParser<JsonMap> {
 
     constructor() : super()
 
@@ -21,7 +22,7 @@ open class JsonMapParser : AbstractParser<JsonMap> {
 
     @Throws(IOException::class)
     override fun onParse(response: Response): JsonMap {
-        val map = convert<JsonMap>(response, mType)
+        val map = Converter.convertTo<JsonMap>(response, JsonMap::class.java, *types)
 
         val code = try {
             map.getInt("success")

@@ -8,7 +8,7 @@ import android.widget.FrameLayout
 import androidx.annotation.StringRes
 import androidx.core.view.isGone
 import com.example.common.R
-import com.example.common.app.BaseApplication
+import com.example.common.app.CommonApplication
 import com.example.common.databinding.CommonLayoutStatusBinding
 import com.example.hzh.base.util.yes
 import com.example.hzh.ui.utils.filterFastClickListener
@@ -99,7 +99,7 @@ class StatusLayout @JvmOverloads constructor(
 
     fun showError() {
         mStatusView.run {
-            tvTip.setText(if (BaseApplication.isNetworkAvailable) R.string.common_unknown_error_retry else R.string.common_require_network_retry)
+            tvTip.setText(if (CommonApplication.isNetworkAvailable) R.string.common_unknown_error_retry else R.string.common_require_network_retry)
 
             root.isClickable = true
             root.isGone = false

@@ -39,10 +39,4 @@ abstract class UIFragment<VB : ViewBinding> : BaseFragment<VB>(), OnTitleBarList
             }
         }
     }
-
-    override fun onLeftClick(v: View?) {}
-
-    override fun onTitleClick(v: View?) {}
-
-    override fun onRightClick(v: View?) {}
 }

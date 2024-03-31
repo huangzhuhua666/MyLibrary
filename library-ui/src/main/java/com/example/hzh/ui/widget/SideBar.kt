@@ -40,35 +40,37 @@ class SideBar @JvmOverloads constructor(
     var onTouchingLetterChanged: ((String) -> Unit)? = null
 
     init {
-        context.obtainStyledAttributes(attrs, R.styleable.SideBar).run {
-            normalTextColor =
-                getColor(R.styleable.SideBar_normalTextColor, Color.parseColor("#ff2dd0cf"))
-            pressTextColor =
-                getColor(R.styleable.SideBar_pressTextColor, Color.parseColor("#ff3399ff"))
-            textSize = getDimension(R.styleable.SideBar_textSize, 12f.sp2px(context))
-            recycle()
+        context.obtainStyledAttributes(attrs, R.styleable.SideBar).let {
+            normalTextColor = it.getColor(
+                R.styleable.SideBar_normalTextColor,
+                Color.parseColor("#ff2dd0cf")
+            )
+            pressTextColor = it.getColor(
+                R.styleable.SideBar_pressTextColor,
+                Color.parseColor("#ff3399ff")
+            )
+            textSize = it.getDimension(R.styleable.SideBar_textSize, 12f.sp2px(context))
+            it.recycle()
         }
     }
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        canvas?.run {
-            val realHeight = height - paddingTop - paddingBottom // item内容总的高度
-            val itemHeight = realHeight / mCategory.size // 每一个item的高度
+        val realHeight = height - paddingTop - paddingBottom // item内容总的高度
+        val itemHeight = realHeight / mCategory.size // 每一个item的高度
 
-            mCategory.forEachIndexed { index, s ->
-                mPaint.run {
-                    typeface = Typeface.DEFAULT
-                    isAntiAlias = true
-                    textSize = this@SideBar.textSize
-                    color = if (index == checkIndex) pressTextColor else normalTextColor
-                    isFakeBoldText = index == checkIndex // 粗体
-                }
+        mCategory.forEachIndexed { index, str ->
+            mPaint.let {
+                it.typeface = Typeface.DEFAULT
+                it.isAntiAlias = true
+                it.textSize = this@SideBar.textSize
+                it.color = if (index == checkIndex) pressTextColor else normalTextColor
+                it.isFakeBoldText = index == checkIndex // 粗体
 
-                val x = width / 2f - mPaint.measureText(s) / 2f
+                val x = width / 2f - it.measureText(str) / 2f
                 val y = paddingTop + itemHeight * (index + 1)
-                drawText(s, x, y.toFloat(), mPaint)
-                mPaint.reset()
+                canvas.drawText(str, x, y.toFloat(), it)
+                it.reset()
             }
         }
     }

@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 import com.example.hzh.base.BuildConfig
 import com.example.hzh.base.activity.BaseActivity
+import com.example.hzh.base.manager.ActivityRecordMgr
 
 /**
  * Create by hzh on 2020/5/13.
@@ -44,6 +45,11 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
         initView()
         initListener()
         bindViewModelObserve()
+    }
+
+    override fun onAttachFragment(childFragment: Fragment) {
+        super.onAttachFragment(childFragment)
+        ActivityRecordMgr.getInstance().onAttachFragment(childFragment)
     }
 
     override fun onResume() {

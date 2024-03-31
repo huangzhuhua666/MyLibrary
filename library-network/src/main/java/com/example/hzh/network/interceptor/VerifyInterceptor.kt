@@ -13,8 +13,6 @@ import java.util.concurrent.TimeUnit
  */
 private const val TAG = "Http"
 
-private val UTF8 = Charsets.UTF_8
-
 class VerifyInterceptor(val debug: Boolean) : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
@@ -84,7 +82,7 @@ private fun Response.logResponse(debug: Boolean, costTime: Long): Response {
 
                     if (debug) Log.d(
                         TAG, "\tbody: ${String(bytes,
-                            UTF8
+                            Charsets.UTF_8
                         )}")
 
                     val newBody = bytes.toResponseBody(body!!.contentType())
@@ -107,7 +105,7 @@ private fun isReadableText(mediaType: MediaType?): Boolean {
 
     if (mediaType.type == "text") return true
 
-    return mediaType.subtype.toLowerCase(Locale.US).run {
+    return mediaType.subtype.lowercase(Locale.US).run {
         contains("x-www-form-urlencoded") || contains("json") || contains("xml") || contains("html")
     }
 }
@@ -119,7 +117,7 @@ private fun Request.bodyToString() {
             writeTo(buffer)
             Log.d(
                 TAG, "\tbody: ${buffer.readString(
-                    UTF8
+                    Charsets.UTF_8
                 )}")
         }
     } catch (e: Exception) {

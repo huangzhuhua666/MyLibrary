@@ -1,0 +1,108 @@
+#!/bin/bash
+#set -x
+
+#校验commitMsg是否匹配既定的规则
+#通过commitId获取commitMsg
+commitMsg=$(head -1 "$1")
+
+#echo "the commit msg is -> $commitMsg " >> ref-update-log.txt
+
+#过滤local merge提交
+localMergeFilter="Merge branch"
+result=$(echo $commitMsg | grep "$localMergeFilter")
+if [ "$result" != "" ]; then
+  echo "current is merge ..."
+  exit 0
+fi
+
+#过滤remote merge提交
+remoteMergeFilter="Merge remote-tracking branch"
+result=$(echo $commitMsg | grep "$remoteMergeFilter")
+if [ "$result" != "" ]; then
+  echo "current is merge ..."
+  exit 0
+fi
+
+#过滤revert提交
+revertFilter="Revert"
+result=$(echo $commitMsg | grep "$revertFilter")
+if [ "$result" != "" ]; then
+  echo "current is revert ..."
+  exit 0
+fi
+
+#获取msg的type
+commitType=$(echo $commitMsg | awk -F. '{print $1}')
+#echo "the commit msg type is -> $commitType  " >> ref-update-log.txt
+
+commitTypeFit=""
+#匹配type
+case $commitType in
+"modify" | "feature" | "fix" | "refactor" | "delete" | "docs" | "build" | "lib")
+  commitTypeFit="Mod"
+  #echo "fit case -> $commitType  " >> ref-update-log.txt
+  ;;
+*)
+  #echo "not fit case...." >> ref-update-log.txt
+  echo "***************************************************" >&2
+  echo "***          [ERROR!] message type不匹配        ***" >&2
+  echo "***      Please ask administrator for help.     ***" >&2
+  echo "***************************************************" >&2
+  exit -2002
+  ;;
+esac
+
+#过滤出.之后的msg
+commitOtherMsg=$(echo $commitMsg | awk -F. '{print $2}')
+
+#.之后必须存在空格,即匹配". "
+result=$(echo $commitMsg | grep '\. ')
+if [ "$result" = "" ]; then
+  #echo "the commit msg should contain one space after . " >> ref-update-log.txt
+  echo "***************************************************" >&2
+  echo "***          [ERROR!] .之后必须存在空格         ***" >&2
+  echo "***      Please ask administrator for help.     ***" >&2
+  echo "***************************************************" >&2
+  exit -2004
+fi
+
+#所有的#之前都需要携带空格，即" #"
+commonChar="#"
+commonSpaceChar=" #"
+commonCharSize=$(echo $commitMsg | grep -o "$commonChar" | wc -l)
+commonSpaceCharSize=$(echo $commitMsg | grep -o "$commonSpaceChar" | wc -l)
+if [ "$commonCharSize" != "$commonSpaceCharSize" ]; then
+  #echo "the commit msg should contain one space after . " >> ref-update-log.txt
+  echo "***************************************************" >&2
+  echo "***          [ERROR!] #之前必须存在空格         ***" >&2
+  echo "***      Please ask administrator for help.     ***" >&2
+  echo "***************************************************" >&2
+  exit -2005
+fi
+
+#匹配jira scheme：：
+#jiraMatcher="#[A-Z]+-[0-9]+"
+#jiraLocation=$(echo $commitMsg | grep -oE "$jiraMatcher")
+#if [ "$jiraLocation" = "" ]; then
+#  #echo "not contain jira scheme ...." >> ref-update-log.txt
+#  echo "***************************************************" >&2
+#  echo "***    [ERROR!] 缺少jira链接或jira链接前没有带# ***" >&2
+#  echo "***      Please ask administrator for help.     ***" >&2
+#  echo "***************************************************" >&2
+#  exit -2006
+#fi
+
+#echo $(pwd)/jenkins_build/sign_check.sh
+#执行校验签名脚本
+#sh $(pwd)/jenkins_build/sign_check.sh
+#ret=$?
+##echo "sign check result is: $ret"
+#if [[ $ret != "1" ]]; then
+#  echo "***************************************************" >&2
+#  echo "***    [ERROR!] 服务端验签校验失败了 = - =   ***" >&2
+#  echo "***      Please ask administrator for help.     ***" >&2
+#  echo "***************************************************" >&2
+#  exit -2007
+#fi
+
+#exit 1

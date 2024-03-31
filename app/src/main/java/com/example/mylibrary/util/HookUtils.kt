@@ -3,6 +3,7 @@ package com.example.mylibrary.util
 import android.annotation.SuppressLint
 import android.app.Instrumentation
 import android.content.Context
+import com.example.hzh.base.Global
 import com.example.mylibrary.util.proxy.InstrumentationProxy
 
 /**
@@ -23,6 +24,6 @@ object HookUtils {
 
         val instrumentationField = ReflectUtils.getField(activityThreadClass, "mInstrumentation")
         val instrumentation = instrumentationField.get(activityThread) as Instrumentation
-        instrumentationField.set(activityThread, InstrumentationProxy(instrumentation, context.packageManager))
+        instrumentationField.set(activityThread, InstrumentationProxy(instrumentation, Global.getPackageManager()))
     }
 }

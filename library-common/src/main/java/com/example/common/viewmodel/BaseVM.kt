@@ -1,13 +1,15 @@
 package com.example.common.viewmodel
 
+import androidx.annotation.StringRes
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.rxLifeScope
+import androidx.lifecycle.viewModelScope
 import com.example.common.BuildConfig
 import com.example.hzh.base.util.yes
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 /**
@@ -58,7 +60,7 @@ open class BaseVM : ViewModel() {
     /**
      * toast信息
      */
-    protected val _toastTip = MutableLiveData<@androidx.annotation.StringRes Int>()
+    protected val _toastTip = MutableLiveData<@receiver:StringRes Int>()
 
     /**
      * @see _toastTip
@@ -81,21 +83,27 @@ open class BaseVM : ViewModel() {
         onStart: (() -> Unit)? = null,
         onFinally: (() -> Unit)? = null
     ) {
-        rxLifeScope.launch(
-            onStart = { onStart?.invoke() },
-            block = { withContext(Dispatchers.IO) { block() } },
-            onError = {
-                onError?.invoke(it)
+        viewModelScope.launch {
+            // do on start
+            onStart?.invoke()
 
-                BuildConfig.DEBUG.yes { it.printStackTrace() }
+            try {
+                withContext(Dispatchers.IO) {
+                    block()
+                }
+            } catch (e: Exception) {
+                onError?.invoke(e)
 
-                _exception.value = it
-            },
-            onFinally = {
+                BuildConfig.DEBUG.yes {
+                    e.printStackTrace()
+                }
+
+                _exception.value = e
+            } finally {
                 _isShowLoading.value = false
                 _isFinish.value = true
                 onFinally?.invoke()
             }
-        )
+        }
     }
 }

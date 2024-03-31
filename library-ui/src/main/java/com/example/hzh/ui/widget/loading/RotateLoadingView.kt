@@ -60,14 +60,14 @@ class RotateLoadingView @JvmOverloads constructor(
         }
 
     init {
-        context.obtainStyledAttributes(attrs, R.styleable.RotateLoadingView).run {
-            mLineWidth = getDimension(R.styleable.RotateLoadingView_lineWidth, mLineWidth)
-            mLineColor = getColor(R.styleable.RotateLoadingView_lineColor, mLineColor)
+        context.obtainStyledAttributes(attrs, R.styleable.RotateLoadingView).let {
+            mLineWidth = it.getDimension(R.styleable.RotateLoadingView_lineWidth, mLineWidth)
+            mLineColor = it.getColor(R.styleable.RotateLoadingView_lineColor, mLineColor)
 
-            mShadowOffset = getDimension(R.styleable.RotateLoadingView_shadowOffset, mShadowOffset)
-            mShadowColor = getColor(R.styleable.RotateLoadingView_shadowColor, mShadowColor)
+            mShadowOffset = it.getDimension(R.styleable.RotateLoadingView_shadowOffset, mShadowOffset)
+            mShadowColor = it.getColor(R.styleable.RotateLoadingView_shadowColor, mShadowColor)
 
-            recycle()
+            it.recycle()
         }
 
         mPaint.strokeWidth = mLineWidth
@@ -107,34 +107,38 @@ class RotateLoadingView @JvmOverloads constructor(
         mArc = 10f
     }
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
-        canvas?.run {
-            mPaint.color = mShadowColor
-            drawArc(mShadowRect, mTopDegree, mArc, false, mPaint)
-            drawArc(mShadowRect, mBotDegree, mArc, false, mPaint)
+        mPaint.color = mShadowColor
+        canvas.drawArc(mShadowRect, mTopDegree, mArc, false, mPaint)
+        canvas.drawArc(mShadowRect, mBotDegree, mArc, false, mPaint)
 
-            mPaint.color = mLineColor
-            drawArc(mLoadingRect, mTopDegree, mArc, false, mPaint)
-            drawArc(mLoadingRect, mBotDegree, mArc, false, mPaint)
+        mPaint.color = mLineColor
+        canvas.drawArc(mLoadingRect, mTopDegree, mArc, false, mPaint)
+        canvas.drawArc(mLoadingRect, mBotDegree, mArc, false, mPaint)
 
-            try {
-                Thread.sleep(2L)
-            } catch (e: InterruptedException) {
-                e.printStackTrace()
+        try {
+            Thread.sleep(2L)
+        } catch (e: InterruptedException) {
+            e.printStackTrace()
+        }
+
+        mTopDegree += 10
+        mBotDegree += 10
+
+        if (mChangeBigger) {
+            if (mArc < 160f) {
+                mArc += 2.5f
             }
-
-            mTopDegree += 10
-            mBotDegree += 10
-
-            if (mChangeBigger) {
-                if (mArc < 160f) mArc += 2.5f
-            } else {
-                if (mArc > 10) mArc -= 5f
+        } else {
+            if (mArc > 10) {
+                mArc -= 5f
             }
+        }
 
-            if (mArc == 160f || mArc == 10f) mChangeBigger = !mChangeBigger
+        if (mArc == 160f || mArc == 10f) {
+            mChangeBigger = !mChangeBigger
         }
     }
 }

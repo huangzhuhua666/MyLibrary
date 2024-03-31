@@ -1,7 +1,6 @@
 package com.example.hzh.network.bean
 
 import java.io.Serializable
-import java.lang.Boolean
 
 /**
  * Create by hzh on 2020/6/3.
@@ -15,12 +14,20 @@ class JsonMap : HashMap<String, Any>(), Serializable {
 
     fun getBool(key: String): kotlin.Boolean {
         val obj = get(key)
-        return if (obj != null && obj != "") Boolean.parseBoolean(obj.toString()) else false
+        return if (obj != null && obj != "") {
+            obj.toString().toBoolean()
+        } else {
+            false
+        }
     }
 
     fun getInt(key: String): Int {
         val obj = get(key)
-        return if (obj != null && obj != "") Integer.parseInt(obj.toString()) else 0
+        return if (obj != null && obj != "") {
+            obj.toString().toInt()
+        } else {
+            0
+        }
     }
 
     fun getString(key: String): String = get(key)?.toString() ?: ""

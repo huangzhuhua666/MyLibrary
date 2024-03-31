@@ -9,4 +9,6 @@
     <color name="common_text_tint_gray">#ff999999</color>
 
     <color name="common_stroke_white">#ffffffff</color>
+
+    <color name="common_color_f5f5f5">#f5f5f5</color>
 </resources>

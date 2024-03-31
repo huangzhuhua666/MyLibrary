@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="base_create_file_failed">创建文件失败</string>
+
+    <string name="base_block_canary_class_has_blocked">blocked %s ms</string>
+    <string name="base_block_canary_notification_message">Click for more details</string>
 </resources>

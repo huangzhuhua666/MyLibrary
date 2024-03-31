@@ -7,8 +7,10 @@ import android.view.MotionEvent
 import android.view.View
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 import com.example.hzh.base.BuildConfig
+import com.example.hzh.base.manager.ActivityRecordMgr
 import com.example.hzh.base.util.hideKeyboard
 
 /**
@@ -44,6 +46,11 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
         setIntent(intent)
+    }
+
+    override fun onAttachFragment(fragment: Fragment) {
+        super.onAttachFragment(fragment)
+        ActivityRecordMgr.getInstance().onAttachFragment(fragment)
     }
 
     override fun onDestroy() {

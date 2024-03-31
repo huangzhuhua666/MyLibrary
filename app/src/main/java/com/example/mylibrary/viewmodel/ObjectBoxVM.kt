@@ -2,7 +2,7 @@ package com.example.mylibrary.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.common.app.BaseApplication
+import com.example.common.app.CommonApplication
 import com.example.common.util.OperateCallback
 import com.example.common.util.boolean
 import com.example.common.viewmodel.BaseVM
@@ -16,7 +16,7 @@ import io.objectbox.reactive.DataSubscriptionList
  */
 class ObjectBoxVM(private val model: ObjectBoxModel) : BaseVM() {
 
-    private var hasData by BaseApplication.kv.boolean("has_data")
+    private var hasData by CommonApplication.kv.boolean("has_data")
 
     private val subscriptions by lazy { DataSubscriptionList() }
 
