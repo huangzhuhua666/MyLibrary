@@ -28,31 +28,29 @@ class JsonMapConverter private constructor(private val gson: Gson) : IConverter 
 
         private val MEDIA_TYPE = "application/json; charset=UTF-8".toMediaType()
 
-        fun create(): JsonMapConverter? {
+        fun create(): JsonMapConverter {
             return create(GsonUtil.buildGson())
         }
 
-
-        fun create(gson: Gson?): JsonMapConverter? {
+        fun create(gson: Gson?): JsonMapConverter {
             if (gson == null) throw NullPointerException("gson == null")
             return JsonMapConverter(gson)
         }
     }
 
-    override fun <T> convert(body: ResponseBody, type: Type, onResultDecoder: Boolean): T = try {
-        val result = body.string().let {
-            if (onResultDecoder) RxHttpPlugins.onResultDecoder(it) else it
+    override fun <T : Any> convert(body: ResponseBody, type: Type, needDecodeResult: Boolean): T {
+        return try {
+            val result = RxHttpPlugins.onResultDecoder(body.string())
+            when (type) {
+                JsonMap::class.java -> convertToJsonMap(result) as T
+                String::class.java -> result as T
+                else -> gson.fromJson(result, type)
+            }
+        } catch (e: Exception) {
+            throw e
+        } finally {
+            body.close()
         }
-
-        when (type) {
-            JsonMap::class.java -> convertToJsonMap(result) as T
-            String::class.java -> result as T
-            else -> gson.fromJson(result, type)
-        }
-    } catch (e: Exception) {
-        throw e
-    } finally {
-        body.close()
     }
 
     override fun <T : Any> convert(value: T): RequestBody {

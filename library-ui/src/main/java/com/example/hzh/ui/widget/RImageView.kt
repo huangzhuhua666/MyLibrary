@@ -239,6 +239,7 @@ class RImageView @JvmOverloads constructor(
                 mWidth = measuredWidth
                 mHeight = measuredHeight
             }
+
             Shape.CIRCLE -> {
                 mWidth = min(measuredWidth, measuredHeight)
                 mRadius = mWidth / 2.toFloat()
@@ -258,6 +259,7 @@ class RImageView @JvmOverloads constructor(
                 mHeight = h
                 createRoundRectPath()
             }
+
             Shape.CIRCLE -> {
                 mWidth = min(w, h)
                 mRadius = mWidth / 2.toFloat()
@@ -334,25 +336,23 @@ class RImageView @JvmOverloads constructor(
         } else mShapePath.addCircle(mRadius, mRadius, mRadius, Path.Direction.CW) // 无边框
     }
 
-    override fun onDraw(canvas: Canvas?) {
-        canvas?.run {
-            val shader = getBitmapShader() // 通过BitmapShader画图片
-            mBitmapPaint.let {
-                it.reset()
-                it.isAntiAlias = true
-                if (shader != null) it.shader = shader
-                else it.color = Color.TRANSPARENT
-            }
-
-            if (borderWidth > 0) {
-                mBorderPaint.color = borderColor
-                mBorderPaint.strokeWidth = borderWidth
-                drawPath(mBorderPath, mBorderPaint)
-            } // 画边框？
-
-            // 画Bitmap
-            drawPath(mShapePath, mBitmapPaint)
+    override fun onDraw(canvas: Canvas) {
+        val shader = getBitmapShader() // 通过BitmapShader画图片
+        mBitmapPaint.let {
+            it.reset()
+            it.isAntiAlias = true
+            if (shader != null) it.shader = shader
+            else it.color = Color.TRANSPARENT
         }
+
+        if (borderWidth > 0) {
+            mBorderPaint.color = borderColor
+            mBorderPaint.strokeWidth = borderWidth
+            canvas.drawPath(mBorderPath, mBorderPaint)
+        } // 画边框？
+
+        // 画Bitmap
+        canvas.drawPath(mShapePath, mBitmapPaint)
     }
 
     /**
@@ -370,6 +370,7 @@ class RImageView @JvmOverloads constructor(
                             max(mWidth.toFloat() / it.width, mHeight.toFloat() / it.height)
                         else 1.0f
                     }
+
                     Shape.CIRCLE -> mWidth.toFloat() / min(it.width, it.height)
                 }
 
@@ -436,7 +437,7 @@ class RImageView @JvmOverloads constructor(
         return super.dispatchTouchEvent(event)
     }
 
-    override fun onSaveInstanceState(): Parcelable? = bundleOf(
+    override fun onSaveInstanceState(): Parcelable = bundleOf(
         STATE_INSTANCE to super.onSaveInstanceState(),
         STATE_SHAPE to when (shape) {
             Shape.ROUND_CORNER -> 0

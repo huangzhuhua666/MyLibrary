@@ -65,16 +65,14 @@ class BarLoadingView @JvmOverloads constructor(
         mLineMargin = (measuredWidth - 4 * mLineWidth) / 4
     }
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
-        canvas?.run {
-            mPaint.strokeWidth = mLineWidth
+        mPaint.strokeWidth = mLineWidth
 
-            for (i in 0..3) {
-                val x = (2 * i + 1) * (mLineMargin + mLineWidth) / 2
-                drawLine(x, height.toFloat(), x, height * mLineRatioList[i], mPaint)
-            }
+        for (i in 0..3) {
+            val x = (2 * i + 1) * (mLineMargin + mLineWidth) / 2
+            canvas.drawLine(x, height.toFloat(), x, height * mLineRatioList[i], mPaint)
         }
     }
 

@@ -28,7 +28,7 @@ class ObjectBoxActivity : YYActivity<ActivityObjectBoxBinding, ObjectBoxVM>() {
     override val mViewModel by viewModels<ObjectBoxVM> {
         object : ViewModelProvider.Factory {
 
-            override fun <T : ViewModel?> create(modelClass: Class<T>): T = ObjectBoxVM(ObjectBoxModel()) as T
+            override fun <T : ViewModel> create(modelClass: Class<T>) = ObjectBoxVM(ObjectBoxModel()) as T
         }
     }
 

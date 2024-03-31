@@ -83,22 +83,28 @@ class TabView @JvmOverloads constructor(
             resources.displayMetrics
         ).toInt()
 
-        context.obtainStyledAttributes(attrs, R.styleable.TabView).run {
-            mText = getString(R.styleable.TabView_tabText)
-            mTextSize = getDimensionPixelSize(R.styleable.TabView_tabTextSize, mTextSize)
-            mTextColorNormal = getColor(R.styleable.TabView_tabTextColorNormal, mTextColorNormal)
-            mTextColorSelect = getColor(R.styleable.TabView_tabTextColorSelect, mTextColorSelect)
+        context.obtainStyledAttributes(attrs, R.styleable.TabView).let {
+            mText = it.getString(R.styleable.TabView_tabText)
+            mTextSize = it.getDimensionPixelSize(R.styleable.TabView_tabTextSize, mTextSize)
+            mTextColorNormal = it.getColor(R.styleable.TabView_tabTextColorNormal, mTextColorNormal)
+            mTextColorSelect = it.getColor(R.styleable.TabView_tabTextColorSelect, mTextColorSelect)
 
-            getDrawable(R.styleable.TabView_tabIconNormal)?.let { mIconNormal = it.toBitmap() }
+            it.getDrawable(R.styleable.TabView_tabIconNormal)?.let { drawable ->
+                mIconNormal = drawable.toBitmap()
+            }
 
-            getDrawable(R.styleable.TabView_tabIconSelect)?.let { mIconSelect = it.toBitmap() }
+            it.getDrawable(R.styleable.TabView_tabIconSelect)?.let { drawable ->
+                mIconSelect = drawable.toBitmap()
+            }
 
-            mBadgeBackgroundColor =
-                getColor(R.styleable.TabView_badgeBackgroundColor, mBadgeBackgroundColor)
+            mBadgeBackgroundColor = it.getColor(
+                R.styleable.TabView_badgeBackgroundColor,
+                mBadgeBackgroundColor
+            )
 
-            mPadding = getDimensionPixelSize(R.styleable.TabView_paddingTextWithIcon, mPadding)
+            mPadding = it.getDimensionPixelSize(R.styleable.TabView_paddingTextWithIcon, mPadding)
 
-            recycle()
+            it.recycle()
         }
 
         initText()
@@ -188,61 +194,63 @@ class TabView @JvmOverloads constructor(
         } else throw IllegalArgumentException("必须设置tabText或者tabIconSelected、tabIconNormal两个")
     }
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         val alpha = ceil(mAlpha * 255.toDouble()).toInt()
 
-        canvas?.run {
-            if (mIconNormal != null && mIconSelect != null) {
-                availableToDrawRect(mIconAvailableRect, mIconNormal!!)
+        if (mIconNormal != null && mIconSelect != null) {
+            availableToDrawRect(mIconAvailableRect, mIconNormal)
 
-                mSelectPaint.apply {
-                    reset()
-                    isAntiAlias = true // 设置抗锯齿
-                    isFilterBitmap = true // 抗锯齿
-                    setAlpha(255 - alpha)
-                    drawBitmap(mIconNormal!!, null, mIconDrawRect, mSelectPaint)
+            mSelectPaint.let {
+                it.reset()
+                it.isAntiAlias = true // 设置抗锯齿
+                it.isFilterBitmap = true // 抗锯齿
+                it.alpha = 255 - alpha
+                canvas.drawBitmap(mIconNormal!!, null, mIconDrawRect, mSelectPaint)
 
-                    reset()
-                    isAntiAlias = true // 设置抗锯齿
-                    isFilterBitmap = true // 抗锯齿
-                    setAlpha(alpha)
-                    drawBitmap(mIconSelect!!, null, mIconDrawRect, mSelectPaint)
-                }
+                it.reset()
+                it.isAntiAlias = true // 设置抗锯齿
+                it.isFilterBitmap = true // 抗锯齿
+                it.alpha = alpha
+                canvas.drawBitmap(mIconSelect!!, null, mIconDrawRect, mSelectPaint)
             }
+        }
 
-            mText?.let {
-                mTextPaint.apply {
-                    // 绘制原始文字
-                    color = mTextColorNormal
-                    setAlpha(255 - alpha)
-                    // 由于在该方法中，y轴坐标代表的是baseLine的值，mTextBound.height() + mFmi.bottom就是字体的高
-                    // 所以在最后绘制前，修正偏移量，将文字向上修正mFmi.bottom / 2即可实现垂直居中
-                    drawText(
-                        it,
-                        mTextBound.left.toFloat(),
-                        mTextBound.bottom - mFmi!!.bottom / 2.toFloat(),
-                        mTextPaint
-                    )
+        mText?.let { text ->
+            mTextPaint.let {
+                // 绘制原始文字
+                it.color = mTextColorNormal
+                it.alpha = 255 - alpha
+                // 由于在该方法中，y轴坐标代表的是baseLine的值，mTextBound.height() + mFmi.bottom就是字体的高
+                // 所以在最后绘制前，修正偏移量，将文字向上修正mFmi.bottom / 2即可实现垂直居中
+                canvas.drawText(
+                    text,
+                    mTextBound.left.toFloat(),
+                    mTextBound.bottom - mFmi!!.bottom / 2.toFloat(),
+                    mTextPaint
+                )
 
-                    // 绘制变色文字
-                    color = mTextColorSelect
-                    setAlpha(alpha)
-                    drawText(
-                        it,
-                        mTextBound.left.toFloat(),
-                        mTextBound.bottom - mFmi!!.bottom / 2.toFloat(),
-                        mTextPaint
-                    )
-                }
+                // 绘制变色文字
+                it.color = mTextColorSelect
+                it.alpha = alpha
+                canvas.drawText(
+                    text,
+                    mTextBound.left.toFloat(),
+                    mTextBound.bottom - mFmi!!.bottom / 2.toFloat(),
+                    mTextPaint
+                )
             }
+        }
 
-            //绘制角标
-            if (!isShowRemove) drawBadge(this)
+        // 绘制角标
+        if (!isShowRemove) {
+            drawBadge(canvas)
         }
     }
 
-    private fun availableToDrawRect(availableRect: Rect, bitmap: Bitmap) {
+    private fun availableToDrawRect(availableRect: Rect, bitmap: Bitmap?) {
+        bitmap ?: return
+
         var dx = 0f
         var dy = 0f
         val wRatio = availableRect.width() * 1.0f / bitmap.width
@@ -268,9 +276,8 @@ class TabView @JvmOverloads constructor(
 
             val width: Int
             val height = i.toFloat().dp2px(context).toInt()
-            val bitmap: Bitmap
 
-            bitmap = when (number.length) {
+            val bitmap: Bitmap = when (number.length) {
                 1 -> {
                     width = i.toFloat().dp2px(context).toInt()
                     createBitmap(width, height, Config.ARGB_8888)

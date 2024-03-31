@@ -5,10 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DecodeFormat
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.chad.library.adapter.base.binder.QuickViewBindingItemBinder
-import com.example.mylibrary.app.GlideApp
 import com.example.mylibrary.databinding.ItemMovieBinding
 
 /**
@@ -23,7 +23,7 @@ class MovieBinder : QuickViewBindingItemBinder<String, ItemMovieBinding>() {
     ): ItemMovieBinding = ItemMovieBinding.inflate(layoutInflater, parent, false)
 
     override fun convert(holder: BinderVBHolder<ItemMovieBinding>, data: String) {
-        GlideApp.with(context)
+        Glide.with(context)
             .load(data)
             .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
             .format(DecodeFormat.PREFER_RGB_565)

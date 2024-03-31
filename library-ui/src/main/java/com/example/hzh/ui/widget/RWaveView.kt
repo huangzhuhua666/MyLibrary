@@ -12,9 +12,8 @@ import android.view.ViewGroup
 import android.view.animation.DecelerateInterpolator
 import android.view.animation.LinearInterpolator
 import androidx.annotation.ColorInt
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.OnLifecycleEvent
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.LifecycleOwner
 import com.example.hzh.ui.R
 import com.example.hzh.ui.animator.dsl.ValueAnim
 import com.example.hzh.ui.animator.dsl.valueAnim
@@ -27,7 +26,7 @@ class RWaveView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : View(context, attrs, defStyleAttr), LifecycleObserver {
+) : View(context, attrs, defStyleAttr), DefaultLifecycleObserver {
 
     private val mBgPaint by lazy {
         Paint(Paint.ANTI_ALIAS_FLAG).apply {
@@ -163,14 +162,14 @@ class RWaveView @JvmOverloads constructor(
         updateHorizonOffset()
     }
 
-    override fun onDraw(canvas: Canvas?) {
-        canvas?.run {
-            drawCircle(width / 2f, height / 2f, width / 2f, mBgPaint)
+    override fun onDraw(canvas: Canvas) {
+        canvas.let {
+            it.drawCircle(width / 2f, height / 2f, width / 2f, mBgPaint)
 
             // 画边框
             mBorderPaint.color = borderColor
             mBorderPaint.strokeWidth = borderWidth
-            drawCircle(width / 2f, height / 2f, (width - borderWidth) / 2f, mBorderPaint)
+            it.drawCircle(width / 2f, height / 2f, (width - borderWidth) / 2f, mBorderPaint)
 
             // 画波浪上方的文字
             mTextPaint.apply {
@@ -182,7 +181,7 @@ class RWaveView @JvmOverloads constructor(
                 mTextPath.reset()
                 getTextPath(txt, 0, txt.length, textX, textY, mTextPath)
             }
-            drawPath(mTextPath, mTextPaint)
+            it.drawPath(mTextPath, mTextPaint)
 
             val itemWidth = waveWidth / 2f
             verticalOffset = height / 100f * (100 - progressControl)
@@ -204,14 +203,14 @@ class RWaveView @JvmOverloads constructor(
             }
             mCirclePath.reset()
             mCirclePath.addCircle(width / 2f, height / 2f, (width - borderWidth) / 2f, Path.Direction.CW)
-            clipPath(mCirclePath)
+            it.clipPath(mCirclePath)
             mWavePaint.color = waveColor
-            drawPath(mWavePath, mWavePaint)
+            it.drawPath(mWavePath, mWavePaint)
 
             // 画被波浪覆盖的文字
             mTextPaint.color = teColorBelow
-            clipPath(mWavePath)
-            drawPath(mTextPath, mTextPaint)
+            it.clipPath(mWavePath)
+            it.drawPath(mTextPath, mTextPaint)
         }
     }
 
@@ -247,13 +246,11 @@ class RWaveView @JvmOverloads constructor(
         mVerticalAnim = null
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_START)
-    fun onStart() {
+    override fun onStart(owner: LifecycleOwner) {
         updateHorizonOffset()
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
-    fun onStop() {
+    override fun onStop(owner: LifecycleOwner) {
         cancelAllAnim()
     }
 }

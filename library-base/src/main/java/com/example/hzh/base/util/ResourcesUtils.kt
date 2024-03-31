@@ -37,7 +37,7 @@ object ResourcesUtils {
      * @param resId 资源文件中定义的颜色id
      */
     fun getColor(context: Context?, resId: Int): Int {
-        val realContext = (context ?: Global.getApplication()
+        val realContext = context ?: Global.getApplication()
         return if (Build.VERSION.SDK_INT >= 23) {
             realContext.resources.getColor(resId, realContext.theme)
         } else {

@@ -139,7 +139,7 @@ internal class FPSMonitorViewManager {
 
     private class FPSMonitorViewGestureDetectorListener(val view: View) : GestureDetector.SimpleOnGestureListener() {
 
-        override fun onDoubleTap(e: MotionEvent?): Boolean {
+        override fun onDoubleTap(e: MotionEvent): Boolean {
             view.alpha = if (view.alpha != 1f) {
                 1f
             } else {
@@ -160,9 +160,9 @@ internal class FPSMonitorViewManager {
         private var initialTouchX = 0f
         private var initialTouchY = 0f
 
-        override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+        override fun onTouch(v: View?, event: MotionEvent): Boolean {
             gestureDetector.onTouchEvent(event)
-            when (event?.action) {
+            when (event.action) {
                 MotionEvent.ACTION_DOWN -> {
                     initialX = layoutParams.leftMargin
                     initialY = layoutParams.topMargin

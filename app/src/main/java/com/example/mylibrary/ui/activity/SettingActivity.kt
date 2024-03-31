@@ -3,8 +3,6 @@ package com.example.mylibrary.ui.activity
 import com.chad.library.adapter.base.BaseBinderAdapter
 import com.example.common.activity.UIActivity
 import com.example.common.app.CommonApplication
-import com.example.common.util.boolean
-import com.example.common.util.string
 import com.example.hzh.base.util.ResourcesUtils
 import com.example.hzh.base.util.vbInflate
 import com.example.hzh.ui.widget.SimpleItemDecoration

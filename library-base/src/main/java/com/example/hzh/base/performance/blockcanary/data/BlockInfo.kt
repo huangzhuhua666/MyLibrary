@@ -60,9 +60,13 @@ class BlockInfo {
             val context = BlockCanaryInternal.getContext()
             if (it.versionName.trim().isEmpty()) {
                 try {
-                    val pkInfo = Global.getPackageManager().getPackageInfo(Global.getPackageName(), 0)
-                    it.versionCode = pkInfo.versionCode
-                    it.versionName = pkInfo.versionName
+                    Global.getPackageManager()?.getPackageInfo(
+                        Global.getPackageName(),
+                        0
+                    )?.let { pkInfo ->
+                        it.versionCode = pkInfo.versionCode
+                        it.versionName = pkInfo.versionName
+                    }
                 } catch (e: Throwable) {
                     e.printStackTrace()
                 }

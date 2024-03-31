@@ -22,10 +22,10 @@ internal data class FPSSlice(
      */
     sealed class Metric {
 
-        object Good : Metric()
+        data object Good : Metric()
 
-        object Bad : Metric()
+        data object Bad : Metric()
 
-        object Medium : Metric()
+        data object Medium : Metric()
     }
 }

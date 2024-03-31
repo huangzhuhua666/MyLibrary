@@ -11,8 +11,8 @@ import androidx.activity.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.common.activity.YYActivity
-import com.example.hzh.base.util.vbInflate
 import com.example.hzh.base.util.targetVersion
+import com.example.hzh.base.util.vbInflate
 import com.example.hzh.ui.utils.filterFastClickListener
 import com.example.mylibrary.databinding.ActivityGoodsDetailBinding
 import com.example.mylibrary.model.GoodsDetailModel
@@ -35,7 +35,7 @@ class GoodsDetailActivity : YYActivity<ActivityGoodsDetailBinding, GoodsDetailVM
     override val mViewModel by viewModels<GoodsDetailVM> {
         object : ViewModelProvider.Factory {
 
-            override fun <T : ViewModel?> create(modelClass: Class<T>): T = GoodsDetailVM(GoodsDetailModel()) as T
+            override fun <T : ViewModel> create(modelClass: Class<T>) = GoodsDetailVM(GoodsDetailModel()) as T
         }
     }
 

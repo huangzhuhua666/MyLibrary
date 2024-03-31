@@ -46,11 +46,9 @@ abstract class UIActivity<VB : ViewBinding> : BaseActivity<VB>(), OnTitleBarList
         }
     }
 
-    override fun onLeftClick(v: View?) {
-        isLeftFinish.yes { finish() }
+    override fun onLeftClick(titleBar: TitleBar?) {
+        isLeftFinish.yes {
+            finish()
+        }
     }
-
-    override fun onTitleClick(v: View?) {}
-
-    override fun onRightClick(v: View?) {}
 }

@@ -13,7 +13,7 @@ object PackageUtils {
         componentName ?: return null
 
         try {
-            return Global.getPackageManager().getActivityInfo(componentName, 0)
+            return Global.getPackageManager()?.getActivityInfo(componentName, 0)
         } catch (e: Exception) {
             e.printStackTrace()
         }

@@ -7,9 +7,9 @@ import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.OnLifecycleEvent
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.example.hzh.base.BuildConfig
 import com.example.hzh.base.Global
@@ -26,7 +26,7 @@ import java.util.concurrent.CopyOnWriteArraySet
 /**
  * Create by hzh on 2024/3/13.
  */
-class ActivityRecordMgr private constructor() : LifecycleObserver {
+class ActivityRecordMgr private constructor() : DefaultLifecycleObserver {
 
     companion object {
 
@@ -217,8 +217,7 @@ class ActivityRecordMgr private constructor() : LifecycleObserver {
         }
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-    private fun onForeground() {
+    override fun onResume(owner: LifecycleOwner) {
         if (mLifecycleEventOnStop) {
             isColdStart = false
             notifyAppVisibilityChanged(true)
@@ -226,8 +225,7 @@ class ActivityRecordMgr private constructor() : LifecycleObserver {
         }
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
-    private fun onBackground() {
+    override fun onStop(owner: LifecycleOwner) {
         if (!mLifecycleEventOnStop) {
             notifyAppVisibilityChanged(false)
             // 进入过后台
@@ -460,17 +458,17 @@ class ActivityRecordMgr private constructor() : LifecycleObserver {
     // level -> 可视等级
     sealed class ActivityState(val level: Int) {
 
-        object OnCreate : ActivityState(10)
+        data object OnCreate : ActivityState(10)
 
-        object OnStart : ActivityState(8)
+        data object OnStart : ActivityState(8)
 
-        object OnResume : ActivityState(6)
+        data object OnResume : ActivityState(6)
 
-        object OnPause : ActivityState(4)
+        data object OnPause : ActivityState(4)
 
-        object OnStop : ActivityState(2)
+        data object OnStop : ActivityState(2)
 
-        object OnDestroy : ActivityState(0)
+        data object OnDestroy : ActivityState(0)
     }
 
     interface AppVisibleChangeListener {

@@ -14,21 +14,20 @@ class DrawableCenterButton @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : AppCompatTextView(context, attrs, defStyleAttr) {
 
-    override fun onDraw(canvas: Canvas?) {
-        canvas?.let {
-            val textWidth = paint.measureText(text.toString())
+    override fun onDraw(canvas: Canvas) {
+        val textWidth = paint.measureText(text.toString())
 
-            compoundDrawables[0]?.run { // DrawableStart
-                val contentWidth =
-                    textWidth + compoundDrawablePadding + intrinsicWidth + paddingStart + paddingEnd
-                it.translate((width - contentWidth) / 2, 0f)
-            }
+        // DrawableStart
+        compoundDrawables[0]?.let {
+            val contentWidth = textWidth + compoundDrawablePadding + it.intrinsicWidth + paddingStart + paddingEnd
+            canvas.translate((width - contentWidth) / 2, 0f)
+        }
 
-            compoundDrawables[2]?.run { // DrawableEnd
-                val contentWidth = textWidth + compoundDrawablePadding + intrinsicWidth
-                setPadding(0, paddingTop, (width - contentWidth).toInt(), paddingBottom)
-                it.translate((width - contentWidth) / 2, 0f)
-            }
+        // DrawableEnd
+        compoundDrawables[2]?.let {
+            val contentWidth = textWidth + compoundDrawablePadding + it.intrinsicWidth
+            setPadding(0, paddingTop, (width - contentWidth).toInt(), paddingBottom)
+            canvas.translate((width - contentWidth) / 2, 0f)
         }
 
         super.onDraw(canvas)

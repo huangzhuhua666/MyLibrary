@@ -24,7 +24,7 @@ internal fun ByteArray.byteArrayToHexString(): String {
         if (v < 16) sb.append("0")
         sb.append(Integer.toHexString(v))
     }
-    return sb.toString().toUpperCase(Locale.US)
+    return sb.toString().uppercase(Locale.US)
 }
 
 fun RxHttpJsonParam.addPairs(vararg pairs: Pair<String, Any>): RxHttpJsonParam {

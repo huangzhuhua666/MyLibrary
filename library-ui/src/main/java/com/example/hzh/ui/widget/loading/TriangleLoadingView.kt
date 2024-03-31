@@ -9,9 +9,8 @@ import android.graphics.Path
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.OnLifecycleEvent
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.LifecycleOwner
 import com.example.hzh.ui.animator.dsl.ValueAnim
 import com.example.hzh.ui.animator.dsl.valueAnim
 import kotlin.math.pow
@@ -27,7 +26,7 @@ class TriangleLoadingView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : View(context, attrs, defStyleAttr), LifecycleObserver {
+) : View(context, attrs, defStyleAttr), DefaultLifecycleObserver {
 
     private var mCX = 0
     private var mCY = 0
@@ -117,22 +116,24 @@ class TriangleLoadingView @JvmOverloads constructor(
         }
     }
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         mTriangles.forEach {
-            mPath.run {
-                reset()
-                moveTo(it.startX.toFloat(), it.startY.toFloat())
-                lineTo(it.currX1.toFloat(), it.currY1.toFloat())
-                lineTo(it.currX2.toFloat(), it.currY2.toFloat())
-                close()
+            mPath.let { path ->
+                path.reset()
+                path.moveTo(it.startX.toFloat(), it.startY.toFloat())
+                path.lineTo(it.currX1.toFloat(), it.currY1.toFloat())
+                path.lineTo(it.currX2.toFloat(), it.currY2.toFloat())
+                path.close()
             }
 
             mPaint.color = it.color
 
-            canvas?.drawPath(mPath, mPaint)
+            canvas.drawPath(mPath, mPaint)
 
-            if (mCurrStatus == Status.MID_LOADING) return
+            if (mCurrStatus == Status.MID_LOADING) {
+                return
+            }
         }
     }
 
@@ -156,6 +157,7 @@ class TriangleLoadingView @JvmOverloads constructor(
                         reverseAnim()
                         Status.LOAD_COMPLETE
                     }
+
                     Status.LOAD_COMPLETE -> Status.THIRD_DISMISS
                     Status.THIRD_DISMISS -> Status.FIRST_DISMISS
                     Status.FIRST_DISMISS -> Status.SECOND_DISMISS
@@ -173,6 +175,7 @@ class TriangleLoadingView @JvmOverloads constructor(
                 val fraction = when (mCurrStatus) {
                     Status.FIRST_DISMISS, Status.SECOND_DISMISS,
                     Status.THIRD_DISMISS, Status.MID_DISMISS -> 1 - it
+
                     else -> it
                 }
 
@@ -202,13 +205,11 @@ class TriangleLoadingView @JvmOverloads constructor(
         mAnim = null
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-    fun onResume() {
+    override fun onResume(owner: LifecycleOwner) {
         startAnim()
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
-    fun onPause() {
+    override fun onPause(owner: LifecycleOwner) {
         stopAnim()
     }
 

@@ -69,12 +69,12 @@ class CrashHandler private constructor() : Thread.UncaughtExceptionHandler {
 
     private fun collectDeviceInfo() {
         try {
-            Global.getPackageManager().getPackageInfo(
+            Global.getPackageManager()?.getPackageInfo(
                 Global.getPackageName(),
                 PackageManager.GET_ACTIVITIES
-            )?.run {
-                mDeviceInfo["version_code"] = versionCode.toString()
-                mDeviceInfo["version_name"] = versionName ?: ""
+            )?.let {
+                mDeviceInfo["version_code"] = it.versionCode.toString()
+                mDeviceInfo["version_name"] = it.versionName ?: ""
             }
         } catch (e: PackageManager.NameNotFoundException) {
             e.printStackTrace()

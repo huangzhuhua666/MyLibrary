@@ -71,7 +71,7 @@ dependencies {
 
     implementation(project(":library-common"))
 
-    ksp(libs.glide.compiler)
+    ksp(libs.glide.ksp)
 
     // region test
     testImplementation(libs.junit)

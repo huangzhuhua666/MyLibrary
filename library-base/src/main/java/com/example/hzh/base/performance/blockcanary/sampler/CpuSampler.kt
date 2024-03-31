@@ -96,7 +96,7 @@ internal class CpuSampler(sampleInterval: Long) : BaseSampler(sampleInterval) {
             synchronized(mCpuInfoEntries) {
                 mCpuInfoEntries[System.currentTimeMillis()] = cpuInfoEntry
                 if (mCpuInfoEntries.size > MAX_ENTRY_COUNT) {
-                    mCpuInfoEntries.remove(mCpuInfoEntries.entries.first())
+                    mCpuInfoEntries.remove(mCpuInfoEntries.entries.first().key)
                 }
             }
         }

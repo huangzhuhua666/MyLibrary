@@ -63,29 +63,45 @@ private inline fun <T> MMKV.nullableDefaultValueDelegate(
 fun MMKV.byteArray(
     key: String? = null,
     defaultValue: ByteArray? = null
-): ReadWriteProperty<Any, ByteArray> =
-    nullableDefaultValueDelegate(key, defaultValue, MMKV::decodeBytes, MMKV::encode)
+) = nullableDefaultValueDelegate(
+    key,
+    defaultValue,
+    MMKV::decodeBytes,
+    MMKV::encode
+)
 
 fun MMKV.string(
-    key: String? = null, defaultValue: String? = null
-): ReadWriteProperty<Any, String> =
-    nullableDefaultValueDelegate(key, defaultValue, MMKV::decodeString, MMKV::encode)
+    key: String? = null,
+    defaultValue: String? = null
+) = nullableDefaultValueDelegate(
+    key,
+    defaultValue,
+    MMKV::decodeString,
+    MMKV::encode
+)
 
 fun MMKV.stringSet(
     key: String? = null,
     defaultValue: Set<String>? = null
-): ReadWriteProperty<Any, Set<String>> =
-    nullableDefaultValueDelegate(key, defaultValue, MMKV::decodeStringSet, MMKV::encode)
+) = nullableDefaultValueDelegate(
+    key,
+    defaultValue,
+    MMKV::decodeStringSet,
+    MMKV::encode
+)
 
 inline fun <reified T : Parcelable> MMKV.parcelable(
     key: String? = null,
     defaultValue: T? = null
-): ReadWriteProperty<Any, T> = object : ReadWriteProperty<Any, T> {
+): ReadWriteProperty<Any, T?> = object : ReadWriteProperty<Any, T?> {
 
-    override fun getValue(thisRef: Any, property: KProperty<*>): T =
-        decodeParcelable(key ?: property.name, T::class.java, defaultValue)
+    override fun getValue(thisRef: Any, property: KProperty<*>) = decodeParcelable(
+        key ?: property.name,
+        T::class.java,
+        defaultValue
+    )
 
-    override fun setValue(thisRef: Any, property: KProperty<*>, value: T) {
+    override fun setValue(thisRef: Any, property: KProperty<*>, value: T?) {
         encode(key ?: property.name, value)
     }
 }

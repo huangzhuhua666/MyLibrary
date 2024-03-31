@@ -3,6 +3,7 @@ package com.example.hzh.base.util
 import android.content.Context
 import android.os.Build
 import android.util.TypedValue
+import androidx.annotation.ChecksSdkIntAtLeast
 import java.math.BigDecimal
 import java.math.RoundingMode
 import java.text.SimpleDateFormat
@@ -15,6 +16,7 @@ const val MM_dd = "M-d"
 const val yyyy_M_d = "yyyy-M-d"
 const val yyyy_MM_dd = "yyyy-MM-dd"
 
+@ChecksSdkIntAtLeast(parameter = 0, lambda = 1)
 fun targetVersion(version: Int, after: () -> Unit = {}, before: () -> Unit = {}) {
     if (Build.VERSION.SDK_INT >= version) after()
     else before()
@@ -68,15 +70,22 @@ fun Long.formatDate(style: String): String =
 fun Long.formatSize(): String {
     val kb = toDouble() / 1024
     val mb = kb / 1024
-    if (mb < 1) return "${BigDecimal(kb).setScale(2, BigDecimal.ROUND_HALF_UP)}KB"
+    if (mb < 1) return "${BigDecimal(kb).scaleWithDefault()}KB"
 
     val gb = mb / 1024
-    if (gb < 1) return "${BigDecimal(mb).setScale(2, BigDecimal.ROUND_HALF_UP)}MB"
+    if (gb < 1) return "${BigDecimal(mb).scaleWithDefault()}MB"
 
     val tb = gb / 1024
-    if (tb < 1) return "${BigDecimal(gb).setScale(2, BigDecimal.ROUND_HALF_UP)}GB"
+    if (tb < 1) return "${BigDecimal(gb).scaleWithDefault()}GB"
 
-    return "${BigDecimal(tb).setScale(2, BigDecimal.ROUND_HALF_UP)}TB"
+    return "${BigDecimal(tb).scaleWithDefault()}TB"
+}
+
+fun BigDecimal.scaleWithDefault(
+    newScale: Int = 2,
+    roundingMode: RoundingMode = RoundingMode.HALF_UP
+): BigDecimal {
+    return setScale(newScale, roundingMode)
 }
 
 fun String.hexStringToByteArray(): ByteArray {
@@ -99,5 +108,5 @@ fun ByteArray.byteArrayToHexString(): String {
         if (v < 16) sb.append("0")
         sb.append(Integer.toHexString(v))
     }
-    return sb.toString().toUpperCase(Locale.US)
+    return sb.toString().uppercase(Locale.US)
 }

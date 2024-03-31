@@ -60,7 +60,7 @@ internal class FPSMonitorView @JvmOverloads constructor(
                 .setDuration(SHORT_ANIM_DURATION)
                 .setListener(object : AnimatorListenerAdapter() {
 
-                    override fun onAnimationEnd(animation: Animator?) {
+                    override fun onAnimationEnd(animation: Animator) {
                         isGone = true
                     }
                 })

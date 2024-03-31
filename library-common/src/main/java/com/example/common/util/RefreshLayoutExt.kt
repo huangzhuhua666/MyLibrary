@@ -1,11 +1,11 @@
 package com.example.common.util
 
-import com.scwang.smartrefresh.layout.SmartRefreshLayout
-import com.scwang.smartrefresh.layout.api.RefreshFooter
-import com.scwang.smartrefresh.layout.api.RefreshHeader
-import com.scwang.smartrefresh.layout.api.RefreshLayout
-import com.scwang.smartrefresh.layout.constant.RefreshState
-import com.scwang.smartrefresh.layout.listener.OnMultiPurposeListener
+import com.scwang.smart.refresh.layout.SmartRefreshLayout
+import com.scwang.smart.refresh.layout.api.RefreshFooter
+import com.scwang.smart.refresh.layout.api.RefreshHeader
+import com.scwang.smart.refresh.layout.api.RefreshLayout
+import com.scwang.smart.refresh.layout.constant.RefreshState
+import com.scwang.smart.refresh.layout.listener.OnMultiListener
 
 /**
  * Create by hzh on 2019/08/07.
@@ -13,7 +13,7 @@ import com.scwang.smartrefresh.layout.listener.OnMultiPurposeListener
 fun SmartRefreshLayout.setListener(init: RefreshListenerHelper.() -> Unit) {
     val listener = RefreshListenerHelper()
     listener.init()
-    setOnMultiPurposeListener(listener)
+    setOnMultiListener(listener)
 }
 
 private typealias FooterMoving = (RefreshFooter?, Boolean, Float, Int, Int, Int) -> Unit
@@ -28,7 +28,7 @@ private typealias LoadMore = (RefreshLayout) -> Unit
 private typealias Refresh = (RefreshLayout) -> Unit
 private typealias HeaderFinish = (RefreshHeader?, Boolean) -> Unit
 
-class RefreshListenerHelper : OnMultiPurposeListener {
+class RefreshListenerHelper : OnMultiListener {
 
     private var footerMoving: FooterMoving? = null
     private var headerStartAnimator: HeaderStartAnimator? = null
@@ -113,6 +113,7 @@ class RefreshListenerHelper : OnMultiPurposeListener {
         footerReleased?.invoke(footer, footerHeight, maxDragHeight)
     }
 
+    @Suppress("RestrictedApi")
     override fun onStateChanged(
         refreshLayout: RefreshLayout,
         oldState: RefreshState,

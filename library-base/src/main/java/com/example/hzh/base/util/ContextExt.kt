@@ -145,8 +145,10 @@ inline fun <reified A : Activity> Activity.startActivity(
  * 新建一个Fragment
  */
 inline fun <reified F : Fragment> newFragment(bundle: Bundle? = null) =
-    if (bundle == null) F::class.java.newInstance()
-    else F::class.java.newInstance().apply { arguments = bundle }
+    if (bundle == null) {
+        F::class.java.getConstructor().newInstance()
+    }
+    else F::class.java.getConstructor().newInstance().apply { arguments = bundle }
 
 /**
  * 获取进程名
