@@ -8,6 +8,7 @@ pluginManagement {
         mavenCentral()
         gradlePluginPortal()
         maven { setUrl("https://jitpack.io") }
+        maven { url = uri("./custom-gradle-plugin-repo") }
     }
 
     resolutionStrategy {
@@ -37,3 +38,4 @@ include(":library-common")
 include(":library-base")
 include(":library-network")
 include(":library-ui")
+include(":library-gradle-plugin")

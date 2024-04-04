@@ -8,3 +8,4 @@
 .cxx
 /.idea
 /publish-mavencentral.gradle
+/custom-gradle-plugin-repo

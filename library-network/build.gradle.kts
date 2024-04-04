@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp)
+
+//    alias(libs.plugins.custom.maven.publish)
 }
 
 android {
@@ -65,5 +67,3 @@ ext {
     set("PUBLISH_ARTIFACT_ID", "networklib")
     set("PUBLISH_VERSION", "2.0.0")
 }
-
-//apply("../publish-mavencentral.gradle.kts")
