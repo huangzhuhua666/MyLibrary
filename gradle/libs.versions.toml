@@ -42,6 +42,9 @@ constraintLayout = "2.1.4"
 lifecycleExtensions = "2.2.0"
 lifecycleViewmodelKtx = "2.7.0"
 lifecycleLiveDataKtx = "2.7.0"
+orgJetbrainsKotlinJvm = "1.9.0"
+gradle = "8.1.4"
+mavenPublish = "1.0.3"
 
 [libraries]
 androidx-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "ktx" }
@@ -86,9 +89,12 @@ constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayo
 lifecycle-extensions = { group = "androidx.lifecycle", name = "lifecycle-extensions", version.ref = "lifecycleExtensions" }
 lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
 lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycleLiveDataKtx" }
+gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
 android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlinPlugin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+org-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "orgJetbrainsKotlinJvm" }
+custom-maven-publish = { id = "com.hzh.plugin.mavenpublish", version.ref = "mavenPublish" }
