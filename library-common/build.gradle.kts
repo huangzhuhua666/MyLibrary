@@ -100,3 +100,10 @@ dependencies {
     androidTestImplementation(libs.espresso)
     // endregion
 }
+
+configurations.all {
+    resolutionStrategy {
+        force("androidx.fragment:fragment:1.6.1")
+        force("androidx.lifecycle:lifecycle-viewmodel-savedstate:2.7.0")
+    }
+}

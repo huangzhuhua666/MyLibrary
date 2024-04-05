@@ -66,6 +66,14 @@ dependencies {
     // endregion
 }
 
+configurations.all {
+    resolutionStrategy {
+        force(libs.androidx.ktx)
+        force("androidx.lifecycle:lifecycle-livedata:2.7.0")
+        force("androidx.lifecycle:lifecycle-common:2.7.0")
+    }
+}
+
 ext {
     set("PUBLISH_ARTIFACT_ID", "uilib")
     set("PUBLISH_VERSION", "2.0.0")

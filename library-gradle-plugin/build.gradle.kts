@@ -26,9 +26,7 @@ publishing {
 }
 
 dependencies {
-    implementation(libs.gradle) {
-        exclude(libs.kotlin.stdlib.get().group)
-    }
+    implementation(libs.gradle)
 }
 
 configurations.all {

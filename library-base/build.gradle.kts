@@ -83,6 +83,13 @@ dependencies {
     // endregion
 }
 
+configurations.all {
+    resolutionStrategy {
+        force(libs.kotlin.stdlib)
+        force(libs.lifecycle.livedata.ktx)
+    }
+}
+
 ext {
     set("PUBLISH_ARTIFACT_ID", "baselib")
     set("PUBLISH_VERSION", "2.0.0")
