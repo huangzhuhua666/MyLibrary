@@ -81,3 +81,9 @@ dependencies {
 
     debugImplementation(libs.leakcanary)
 }
+
+configurations.all {
+    resolutionStrategy {
+        force("com.google.code.findbugs:jsr305:3.0.2")
+    }
+}
