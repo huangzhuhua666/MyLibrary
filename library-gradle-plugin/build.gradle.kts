@@ -26,5 +26,21 @@ publishing {
 }
 
 dependencies {
-    implementation(libs.gradle)
+    implementation(libs.gradle) {
+        exclude(libs.kotlin.stdlib.get().group)
+    }
+}
+
+configurations.all {
+    resolutionStrategy {
+        force("org.ow2.asm:asm:9.2")
+        force("org.ow2.asm:asm-commons:9.2")
+        force("org.ow2.asm:asm-util:9.2")
+        force("org.checkerframework:checker-qual:3.12.0")
+        force("com.android.tools.build:aapt2-proto:8.1.4-10154469")
+        force("com.google.protobuf:protobuf-java-util:3.19.3")
+        force("commons-codec:commons-codec:1.11")
+        force("org.apache.httpcomponents:httpclient:4.5.13")
+        force("org.apache.httpcomponents:httpcore:4.5.15")
+    }
 }
