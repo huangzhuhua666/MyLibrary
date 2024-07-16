@@ -39,6 +39,6 @@ configurations.all {
         force("com.google.protobuf:protobuf-java-util:3.19.3")
         force("commons-codec:commons-codec:1.11")
         force("org.apache.httpcomponents:httpclient:4.5.13")
-        force("org.apache.httpcomponents:httpcore:4.5.15")
+        force("org.apache.httpcomponents:httpcore:4.4.15")
     }
 }

@@ -16,12 +16,14 @@ import com.example.hzh.base.manager.ActivityRecordMgr
  */
 abstract class BaseFragment<VB : ViewBinding> : Fragment() {
 
-    private var isFirstIn = true
-
     protected val mContext by lazy { requireActivity() as BaseActivity<*> }
+    protected val mBinding get() = _binding!!
+
+    private val onVisibilityChangeListeners by lazy { LinkedHashSet<OnVisibilityChangeListener>() }
 
     private var _binding: VB? = null
-    protected val mBinding get() = _binding!!
+    private var isFirstIn = true
+    private var isVisible = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,7 +56,17 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        if (BuildConfig.DEBUG) Log.d("CurrentFragment", javaClass.simpleName)
+        if (BuildConfig.DEBUG) {
+            Log.d("CurrentFragment", javaClass.simpleName)
+        }
+
+        // onResume 并不代表 fragment 可见
+        // 如果是在 viewpager 里，就需要判断 getUserVisibleHint，不在 viewpager 时，getUserVisibleHint 默认为 true
+        // 如果是其它情况，就通过 isHidden 判断，因为 show/hide 时会改变 isHidden 的状态
+        // 所以，只有当 fragment 原来是可见状态时，进入 onResume 就回调 onVisible
+        if (userVisibleHint && !isHidden) {
+            notifyVisible()
+        }
 
         if (isFirstIn) {
             initData()
@@ -62,9 +74,85 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
         }
     }
 
+    private fun notifyVisible() {
+        if (isVisible) {
+            return
+        }
+
+        if (parentFragment?.userVisibleHint != true) {
+            return
+        }
+
+        isVisible = true
+        onVisible()
+    }
+
+    open fun onVisible() {
+        onVisibilityChanged(true)
+    }
+
+    private fun onVisibilityChanged(isVisible: Boolean) {
+        onVisibilityChangeListeners.toList().forEach {
+            it.onVisibilityChanged(isVisible)
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        // onPause 时也需要判断，如果当前 fragment 在 viewpager 中不可见，就已经回调过了，onPause 时也就不需要再次回调 onInvisible 了
+        // 所以，只有当 fragment 是可见状态时进入 onPause 才加调 onInvisible
+        if (userVisibleHint && !isHidden) {
+            notifyInvisible()
+        }
+    }
+
+    private fun notifyInvisible() {
+        if (!isVisible) {
+            return
+        }
+
+        isVisible = false
+        onInvisible()
+    }
+
+    open fun onInvisible() {
+        onVisibilityChanged(false)
+    }
+
+    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
+        val change = isVisibleToUser != userVisibleHint
+        super.setUserVisibleHint(isVisibleToUser)
+        // 在 viewpager 中，创建 fragment 时就会调用这个方法，但这时还没有 resume，为了避免重复调用 visible 和 invisible，
+        // 只有当 fragment 状态是 resumed 并且初始化完毕后才进行 visible 和 invisible 的回调
+        if (isResumed && change) {
+            if (userVisibleHint) {
+                notifyVisible()
+            } else {
+                notifyInvisible()
+            }
+        }
+    }
+
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        if (hidden) {
+            notifyInvisible()
+        } else {
+            notifyVisible()
+        }
+    }
+
     override fun onDestroyView() {
         _binding = null
         super.onDestroyView()
+    }
+
+    fun addOnVisibilityChangeListener(onVisibilityChangeListener: OnVisibilityChangeListener) {
+        onVisibilityChangeListeners.add(onVisibilityChangeListener)
+    }
+
+    fun removeOnVisibilityChangeListener(onVisibilityChangeListener: OnVisibilityChangeListener) {
+        onVisibilityChangeListeners.remove(onVisibilityChangeListener)
     }
 
     /**
