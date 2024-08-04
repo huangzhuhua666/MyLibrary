@@ -31,10 +31,10 @@ internal inline fun DefaultTask.android(
     configuration.invoke(it)
 }
 
-internal val <T : AndroidSourceSet> NamedDomainObjectContainer<in T>.`main`: AndroidSourceSet?
+internal val <T : AndroidSourceSet> NamedDomainObjectContainer<in T>.main: AndroidSourceSet?
     get() = findByName("main") as? AndroidSourceSet
 
-internal val Project.`ext`: ExtraPropertiesExtension
+internal val Project.ext: ExtraPropertiesExtension
     get() = extensions.extraProperties
 
 internal val ConfigurationContainer.implementation: Configuration
