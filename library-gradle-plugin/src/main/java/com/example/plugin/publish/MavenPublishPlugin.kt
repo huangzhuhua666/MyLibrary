@@ -22,11 +22,19 @@ class MavenPublishPlugin : Plugin<Project> {
         private const val PUBLISH_ARTIFACT_ID = "PUBLISH_ARTIFACT_ID"
         private const val PUBLISH_VERSION = "PUBLISH_VERSION"
 
+        private const val KEY_GIT_USERNAME = "git.username"
+
+        private const val KEY_DEVELOPER_ID = "developer.id"
+        private const val KEY_DEVELOPER_NAME = "developer.name"
+        private const val KEY_DEVELOPER_EMAIL = "developer.email"
+
         private const val KEY_SIGNING_KEY_ID = "signing.keyId"
         private const val KEY_SIGNING_PASSWORD = "signing.password"
         private const val KEY_SIGNING_SECRET_KEY_RING_FILE = "signing.secretKeyRingFile"
+
         private const val KEY_OSSRH_USERNAME = "ossrhUsername"
         private const val KEY_OSSRH_PASSWORD = "ossrhPassword"
+
         private const val KEY_PUBLISH_ARTIFACT_ID = "publishArtifactId"
         private const val KEY_PUBLISH_VERSION = "publishVersion"
     }
@@ -69,12 +77,13 @@ class MavenPublishPlugin : Plugin<Project> {
     }
 
     private fun Project.configPublishing(target: Project, config: Map<String, String>) {
+        val gitUsername = config[KEY_GIT_USERNAME]
         publishing {
             it.publications { pub ->
                 pub.create<MavenPublication>("release") {
                     // The coordinates of the library, being set from variables that
                     // we'll set up in a moment
-                    groupId = "io.github.huangzhuhua666"
+                    groupId = "io.github.$gitUsername"
                     artifactId = config[KEY_PUBLISH_ARTIFACT_ID]
                     version = config[KEY_PUBLISH_VERSION]
 
@@ -87,7 +96,7 @@ class MavenPublishPlugin : Plugin<Project> {
                         pom.name.set(config[KEY_PUBLISH_ARTIFACT_ID])
                         description = "Some base and useful library for Android"
                         // If your project has a dedicated site, use its URL here
-                        pom.url.set("https://github.com/huangzhuhua666/${rootProject.name}")
+                        pom.url.set("https://github.com/${gitUsername}/${rootProject.name}")
 
                         pom.licenses { spec ->
                             spec.license { license ->
@@ -99,19 +108,19 @@ class MavenPublishPlugin : Plugin<Project> {
 
                         pom.developers { spec ->
                             spec.developer { developer ->
-                                developer.id.set("hzhyyy666")
-                                developer.name.set("hzhyyy666")
-                                developer.email.set("sdhzh666@163.com")
+                                developer.id.set(config[KEY_DEVELOPER_ID])
+                                developer.name.set(config[KEY_DEVELOPER_NAME])
+                                developer.email.set(config[KEY_DEVELOPER_EMAIL])
                             }
                         }
 
                         // Version control info, if you're using GitHub, follow the format as seen here
                         pom.scm { scm ->
                             // Git地址：
-                            scm.connection.set("scm:git:github.com/huangzhuhua666/${rootProject.name}.git")
-                            scm.developerConnection.set("scm:git:ssh://github.com/huangzhuhua666/${rootProject.name}.git")
+                            scm.connection.set("scm:git:github.com/$gitUsername/${rootProject.name}.git")
+                            scm.developerConnection.set("scm:git:ssh://github.com/$gitUsername/${rootProject.name}.git")
                             // 分支地址：
-                            scm.url.set("https://github.com/huangzhuhua666/${rootProject.name}/tree/master")
+                            scm.url.set("https://github.com/$gitUsername/${rootProject.name}/tree/main")
                         }
 
                         // A slightly hacky fix so that your POM will include any transitive dependencies
@@ -157,15 +166,7 @@ class MavenPublishPlugin : Plugin<Project> {
     }
 
     private fun Project.loadLocalConfig(): Map<String, String> {
-        val config = mutableMapOf(
-            KEY_SIGNING_KEY_ID to "",
-            KEY_SIGNING_PASSWORD to "",
-            KEY_SIGNING_SECRET_KEY_RING_FILE to "",
-            KEY_OSSRH_USERNAME to "",
-            KEY_OSSRH_PASSWORD to "",
-            KEY_PUBLISH_ARTIFACT_ID to "",
-            KEY_PUBLISH_VERSION to "",
-        )
+        val config = mutableMapOf<String, String>()
         val secretPropsFile = rootProject.file("local.properties")
         if (secretPropsFile.exists()) {
             println("Found secret props file, loading props.")
@@ -180,8 +181,13 @@ class MavenPublishPlugin : Plugin<Project> {
             println("No props file, loading env vars.")
         }
 
-        config["publishArtifactId"] = ext[PUBLISH_ARTIFACT_ID].toString()
-        config["publishVersion"] = ext[PUBLISH_VERSION].toString()
+        config[KEY_PUBLISH_ARTIFACT_ID] = ext[PUBLISH_ARTIFACT_ID].toString()
+        config[KEY_PUBLISH_VERSION] = ext[PUBLISH_VERSION].toString()
+
+        println("Finally config:")
+        config.forEach {
+            println("${it.key} => ${it.value}")
+        }
 
         return config
     }

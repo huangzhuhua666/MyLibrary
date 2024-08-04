@@ -8,9 +8,9 @@ import org.gradle.plugins.signing.SigningExtension
  * Create by hzh on 2024/3/31.
  */
 
-internal val Project.`signing`: SigningExtension
+internal val Project.signing: SigningExtension
     get() = extensions.getByName("signing") as SigningExtension
 
-internal fun Project.`signing`(
+internal fun Project.signing(
     configure: Action<SigningExtension>
 ) = extensions.configure("signing", configure)

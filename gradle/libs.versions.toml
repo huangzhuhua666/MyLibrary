@@ -44,7 +44,7 @@ lifecycleViewmodelKtx = "2.7.0"
 lifecycleLiveDataKtx = "2.7.0"
 orgJetbrainsKotlinJvm = "1.9.0"
 gradle = "8.1.4"
-mavenPublish = "1.0.3"
+mavenPublish = "1.0.5"
 
 [libraries]
 androidx-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "ktx" }

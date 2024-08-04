@@ -10,7 +10,7 @@ gradlePlugin {
     plugins {
         create("mavenPublishPlugin") {
             group = "com.example.plugin"
-            version = "1.0.3"
+            version = "1.0.5"
             id = "com.hzh.plugin.mavenpublish"
             implementationClass = "com.example.plugin.publish.MavenPublishPlugin"
         }
